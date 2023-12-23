@@ -1,0 +1,44 @@
+h1 {
+    padding-bottom: 10px;
+}
+.flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+}
+
+.fo {
+    height: 100vh;
+}
+
+form div {
+    padding: 5px 5px 5px 5px;
+}
+
+form {
+    display: inline-grid;
+    width: 50%;
+    align-self: center;
+}
+
+.buttons {
+    padding: 5px;
+}
+
+button {
+    width: 100px;
+}
+
+.age {
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    form {
+        display: inline-grid;
+        width: 80%;
+        align-self: center;
+    }
+}

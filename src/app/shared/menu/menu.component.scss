@@ -1,0 +1,22 @@
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: lightgray;
+}
+
+.selected {
+    background-color: #69F0AE;
+}
+
+.selected span, .selected mat-icon{
+    color: black;
+}
+
+span {
+    display: inline-block;
+    width: fit-content;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
