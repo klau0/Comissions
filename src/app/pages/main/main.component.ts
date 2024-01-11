@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
+  
+  to_profile(){
 
+  }
 }

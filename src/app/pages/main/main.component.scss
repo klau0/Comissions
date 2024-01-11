@@ -1,0 +1,48 @@
+.card {
+    height: 450px;
+    width: 450px;
+    text-align: center;
+    margin: 10px;
+}
+
+.avatar {
+    max-width: 50px;
+    padding: 5px;
+    display: block;
+    position: relative;
+    left: 20px;
+    margin: 0;
+}
+
+.nev {
+    position: absolute;
+    margin: 0;
+    display: block;
+}
+
+mat-grid-list {
+    height: 250px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img {
+    display: block;
+    padding: 5px 5px, 0, 5px;
+    max-height: 125px;
+    margin: auto;
+}
+
+.center{
+   margin-left: auto;
+   margin-right: auto;
+}
+
+button {
+    width: 80px;
+}
+
+span {
+    padding: 5px 5px 5px 5px;
+}
