@@ -24,8 +24,27 @@ mat-sidenav {
     padding-left: 5px;
 }
 
-input[name="search"]{
+#keres{
     border: none;
     border-radius: 20px;
-    padding: 10px;
+    box-sizing: content-box;
+    padding: 10px 0 10px 35px;
+    -moz-appearance: textfield;   /* Firefox */
+}
+
+/* Chrome, Safari, Edge, Opera */
+.db::-webkit-outer-spin-button,
+.db::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+i {
+    position: absolute;
+    padding: 8px 10px 10px 10px;
+    min-width: 40px;
+}
+
+.input-icon {
+    width: fit-content;
+    padding-right: 20px;
 }

@@ -8,7 +8,8 @@ import { filter } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+
+export class AppComponent implements OnInit {
   title = 'comissions-project';
   page = '';
   routes: Array<string> = [];
@@ -23,6 +24,16 @@ export class AppComponent {
       const currentPage = (evts.urlAfterRedirects as string).split('/')[1] as string;
       if (this.routes.includes(currentPage)) {
         this.page = currentPage;
+      }
+    });
+
+    let kereses = document.getElementById("keres");
+    kereses?.addEventListener('input', function(){
+      let t = this as HTMLInputElement;
+      if (t.value.length > 23){
+        t.size = t.value.length + 2;
+      } else {
+        t.size = 25;
       }
     });
   }

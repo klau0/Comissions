@@ -13,8 +13,10 @@
       </div>
       <div id="cim">Comissions</div>
       <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
-        <input matInput placeholder="Keresés" type="text" name="search">
-        <mat-icon>search</mat-icon>
+        <div class="input-icon">
+          <i class="fa fa-search icon"></i>
+          <input matInput id="keres" placeholder="Keresés" type="text" name="search" size="25">
+        </div>
         <ul fxLayout fxLayoutGap="10px" class="navigation-items">
           <li *ngIf="loggedInUser"><a routerLink="/main">Művészek</a></li>
           <li *ngIf="loggedInUser"><a routerLink="/cart">Kosár</a></li>
