@@ -1,33 +1,125 @@
-<div class="fo">
-    <div class="flex">
-        <h1>Regisztráció</h1>
-        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-            <mat-form-field>
-                <mat-label>Név: </mat-label>
-                <input matInput type="text" formControlName="name" />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Email: </mat-label>
-                <input matInput type="email" formControlName="email" />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Jelszó: </mat-label>
-                <input matInput type="password" formControlName="pswd" />
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Jelszó újra: </mat-label>
-                <input matInput type="password" formControlName="rePswd" />
-            </mat-form-field>
-            <div class="age">
-                
-            </div>
-            <div>
-                <span class="buttons">
+<h1>Regisztráció</h1>
+
+<mat-tab-group dynamicHeight mat-stretch-tabs="false" mat-align-tabs="center">
+    <mat-tab label="Felhasználóknak">
+        <div class="center">
+            <form [formGroup]="signUpUserForm" (ngSubmit)="onSubmit()">
+                <mat-form-field>
+                    <mat-label>Név</mat-label>
+                    <input matInput type="text" formControlName="name"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" formControlName="email"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Jelszó</mat-label>
+                    <input matInput type="password" formControlName="pswd"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Jelszó újra</mat-label>
+                    <input matInput type="password" formControlName="rePswd"/>
+                </mat-form-field>
+
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <input type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+                        <div class="file-upload">
+                            <span class="text">Profilkép</span>
+                            <button mat-mini-fab class="upload_btn" (click)="fileUpload.click()">
+                                <mat-icon>attach_file</mat-icon>
+                            </button>
+                            <span class="pic">{{profile_pic_name || "Tallózás"}}</span>
+                        </div>
+                    </mat-expansion-panel-header>
+
+                    <ng-template matExpansionPanelContent>
+                        <div class="pics">
+                            <span *ngIf="!profile_pic_url">Nincs még kiválasztva kép</span>
+                            <img *ngIf="profile_pic_url" src="{{profile_pic_url}}">
+                        </div>
+                    </ng-template>
+                </mat-expansion-panel>
+
+                <div class="buttons">
                     <button mat-raised-button color="primary" type="submit">Regisztráció</button>
-                </span><span class="buttons">
                     <button mat-raised-button color="primary" type="button" (click)="goBack()">Vissza</button>
-                </span>
-            </div>
-        </form>
-    </div>
-</div>
+                </div>
+            </form>
+        </div>
+    </mat-tab>
+
+    <mat-tab label="Művészeknek">
+        <div class="center">
+            <form [formGroup]="signUpArtistForm" (ngSubmit)="onSubmit()">
+                <mat-form-field>
+                    <mat-label>Név</mat-label>
+                    <input matInput type="text" formControlName="name"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" formControlName="email"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Jelszó</mat-label>
+                    <input matInput type="password" formControlName="pswd"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Jelszó újra</mat-label>
+                    <input matInput type="password" formControlName="rePswd"/>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Rólam</mat-label>
+                    <textarea matInput formControlName="about"></textarea>
+                </mat-form-field>
+
+                <mat-accordion multi>
+                    <mat-expansion-panel id="artist_prof_exp_panel">
+                        <mat-expansion-panel-header>
+                            <input type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+                            <div class="file-upload">
+                                <span class="text">Profilkép</span>
+                                <button mat-mini-fab class="upload_btn" (click)="fileUpload.click()">
+                                    <mat-icon>attach_file</mat-icon>
+                                </button>
+                                <span class="pic">{{profile_pic_name || "Tallózás"}}</span>
+                            </div>
+                        </mat-expansion-panel-header>
+
+                        <ng-template matExpansionPanelContent>
+                            <div class="pics">
+                                <span *ngIf="!profile_pic_url">Nincs még kiválasztva kép</span>
+                                <img *ngIf="profile_pic_url" src="{{profile_pic_url}}">
+                            </div>
+                        </ng-template>
+                    </mat-expansion-panel>
+
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <input multiple type="file" accept="image/*" class="file-input" (change)="onFilesSelected($event)" #filesUpload>
+                            <div class="file-upload">
+                                <span class="text">Portfólió képei</span>
+                                <button mat-mini-fab class="upload_btn" (click)="filesUpload.click()">
+                                    <mat-icon>attach_file</mat-icon>
+                                </button>
+                                <span class="pic">Tallózás</span>
+                            </div>
+                        </mat-expansion-panel-header>
+
+                        <ng-template matExpansionPanelContent>
+                            <div class="pics">
+                                <span *ngIf="file_urls.length == 0">Nincs még kiválasztva kép</span>
+                                <img *ngFor="let url of file_urls" src="{{url}}">
+                            </div>
+                        </ng-template>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+                <div class="buttons">
+                    <button mat-raised-button color="primary" type="submit">Regisztráció</button>
+                    <button mat-raised-button color="primary" type="button" (click)="goBack()">Vissza</button>
+                </div>
+            </form>
+        </div>
+    </mat-tab>
+</mat-tab-group>

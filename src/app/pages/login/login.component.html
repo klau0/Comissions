@@ -1,16 +1,22 @@
-<span class="tolt" *ngIf="loading">
+<div class="load center" *ngIf="loading">
     <mat-spinner></mat-spinner>
-</span>
+</div>
 
-<div class="fo">
-    <h1>Bejelentkezés</h1>
-    <mat-form-field>
-        <mat-label>Email: </mat-label><input matInput type="email" [formControl]="email" />
-    </mat-form-field>
-    <mat-form-field>
-        <mat-label>Jelszó: </mat-label><input matInput type="password" [formControl]="password" />
-    </mat-form-field>
-    <span>
-        <button mat-raised-button color="primary" (click)="login()">OK</button>
-    </span>
+<h1>Bejelentkezés</h1>
+
+<div class="container">
+    <form>
+        <mat-form-field>
+            <mat-label>Email: </mat-label>
+            <input matInput type="email" [formControl]="email">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Jelszó: </mat-label>
+            <input matInput type="password" [formControl]="password">
+        </mat-form-field>
+
+        <span class="center">
+            <button mat-raised-button color="primary" (click)="login()">OK</button>
+        </span>
+    </form>
 </div>

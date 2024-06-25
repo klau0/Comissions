@@ -11,7 +11,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LoginComponent {
   email = new FormControl('');
   password = new FormControl('');
-
   loading: boolean = false;
 
   constructor(private router: Router, private snackBar: MatSnackBar){}

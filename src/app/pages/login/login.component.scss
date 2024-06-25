@@ -1,22 +1,28 @@
-div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    height: 100%;
+h1 {
+    width: max-content;
+    margin: 40px auto 10px;
 }
 
-.fo {
-    height: 100vh;
-    align-items: center;
+.container {
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    width: 35%;
+    min-width: 300px;
 }
 
-mat-form-field {
-    width: 50%;
+form {
+    margin-top: 25px;
+    display: inline-grid;
+    width: 100%;
 }
 
-@media only screen and (max-width: 600px) {
-    mat-form-field {
-        width: 80%;
-    }
+.center{
+    margin-left: auto;
+    margin-right: auto;
+    width: max-content;
+}
+
+.load{
+    margin-top: 20px;
 }

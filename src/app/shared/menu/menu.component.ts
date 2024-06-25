@@ -7,7 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class MenuComponent {
   @Input() currentPage: string = '';
-  @Input() loggedInUser = false;
+  @Input() loggedInUser: boolean = false;
   @Output() selectedPage: EventEmitter<string> = new EventEmitter();
   @Output() onCloseSidenav: EventEmitter<boolean> = new EventEmitter();
 

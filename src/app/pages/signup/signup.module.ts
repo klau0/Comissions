@@ -9,6 +9,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatIconModule } from '@angular/material/icon'; 
+import { MatExpansionModule } from '@angular/material/expansion'; 
 
 
 @NgModule({
@@ -24,6 +27,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatInputModule, 
     MatSnackBarModule,
     MatCheckboxModule,
+    MatTabsModule,
+    MatIconModule,
+    MatExpansionModule
   ]
 })
 export class SignupModule { }

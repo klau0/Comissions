@@ -1,44 +1,87 @@
 h1 {
-    padding-bottom: 10px;
-}
-.flex {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    height: 100%;
+    width: max-content;
+    margin: 40px auto 20px;
 }
 
-.fo {
-    height: 100vh;
+.center{
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    min-width: 300px;
 }
 
 form div {
-    padding: 5px 5px 5px 5px;
+    padding: 5px 5px;
 }
 
 form {
+    margin-top: 25px;
     display: inline-grid;
-    width: 50%;
-    align-self: center;
+    width: 100%;
 }
 
-.buttons {
-    padding: 5px;
+.file-input{
+    display: none;
 }
 
-button {
-    width: 100px;
+.file-upload{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-.age {
+.text{
+    box-sizing: border-box;
+    margin-right: 50px;
+    font-size: 16px;
+}
+
+.pic{
+    box-sizing: border-box;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.pics{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-left: 5px;
+    flex-wrap: wrap;
+}
+
+.pics img{
+    display: block;
+    max-width: 100px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    border: 2px solid #69F0AE;
+}
+
+#artist_prof_exp_panel{
     margin-bottom: 20px;
 }
 
-@media only screen and (max-width: 600px) {
-    form {
-        display: inline-grid;
-        width: 80%;
-        align-self: center;
-    }
+mat-expansion-panel{
+    padding: 5px 5px;
+}
+
+mat-expansion-panel-header{
+    padding: 0 5px;
+}
+
+.upload_btn{
+    width: 50px;
+}
+
+.buttons{
+    width: max-content;
+    margin: 20px auto 30px;
+    box-sizing: border-box;
+}
+
+.buttons button {
+    padding: 5px 5px;
+    margin-right: 10px;
 }
