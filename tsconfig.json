@@ -2,12 +2,13 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "skipLibCheck": true,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
+    "noPropertyAccessFromIndexSignature": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
@@ -22,7 +23,9 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "allowJs": true,
+    "checkJs": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

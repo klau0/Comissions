@@ -1,9 +1,9 @@
 <h1>Regisztráció</h1>
 
-<mat-tab-group dynamicHeight mat-stretch-tabs="false" mat-align-tabs="center">
+<mat-tab-group dynamicHeight mat-stretch-tabs="false" mat-align-tabs="center" (selectedTabChange)="tabChanged($event)">
     <mat-tab label="Felhasználóknak">
         <div class="center">
-            <form [formGroup]="signUpUserForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="signUpUserForm" (ngSubmit)="onSubmit($event)">
                 <mat-form-field>
                     <mat-label>Név</mat-label>
                     <input matInput type="text" formControlName="name"/>
@@ -26,7 +26,7 @@
                         <input type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)" #fileUpload>
                         <div class="file-upload">
                             <span class="text">Profilkép</span>
-                            <button mat-mini-fab class="upload_btn" (click)="fileUpload.click()">
+                            <button mat-mini-fab class="upload_btn" type="button" (click)="fileUpload.click()">
                                 <mat-icon>attach_file</mat-icon>
                             </button>
                             <span class="pic">{{profile_pic_name || "Tallózás"}}</span>
@@ -51,7 +51,7 @@
 
     <mat-tab label="Művészeknek">
         <div class="center">
-            <form [formGroup]="signUpArtistForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="signUpArtistForm" (ngSubmit)="onSubmit($event)">
                 <mat-form-field>
                     <mat-label>Név</mat-label>
                     <input matInput type="text" formControlName="name"/>
@@ -79,7 +79,7 @@
                             <input type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)" #fileUpload>
                             <div class="file-upload">
                                 <span class="text">Profilkép</span>
-                                <button mat-mini-fab class="upload_btn" (click)="fileUpload.click()">
+                                <button mat-mini-fab class="upload_btn" type="button" (click)="fileUpload.click()">
                                     <mat-icon>attach_file</mat-icon>
                                 </button>
                                 <span class="pic">{{profile_pic_name || "Tallózás"}}</span>
@@ -99,7 +99,7 @@
                             <input multiple type="file" accept="image/*" class="file-input" (change)="onFilesSelected($event)" #filesUpload>
                             <div class="file-upload">
                                 <span class="text">Portfólió képei</span>
-                                <button mat-mini-fab class="upload_btn" (click)="filesUpload.click()">
+                                <button mat-mini-fab class="upload_btn" type="button" (click)="filesUpload.click()">
                                     <mat-icon>attach_file</mat-icon>
                                 </button>
                                 <span class="pic">Tallózás</span>

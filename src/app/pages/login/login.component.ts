@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl } from '@angular/forms';
+import { FormControl,  Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -9,8 +9,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  email = new FormControl('');
-  password = new FormControl('');
+  email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('', Validators.required);
   loading: boolean = false;
 
   constructor(private router: Router, private snackBar: MatSnackBar){}
@@ -20,7 +20,7 @@ export class LoginComponent {
 
     try {
       // TODO
-      
+
       this.router.navigateByUrl('/main');
       this.loading = false;
     } catch (e){

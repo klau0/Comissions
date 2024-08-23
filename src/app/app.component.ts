@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   title = 'comissions-project';
   page = '';
   routes: Array<string> = [];
-  loggedInUser = true;
+  loggedInUser = false;
 
   constructor(private router: Router) {}
 
