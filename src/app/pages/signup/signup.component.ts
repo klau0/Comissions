@@ -7,6 +7,7 @@ import { ThemePalette } from '@angular/material/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Web3storageService } from '../../shared/services/web3storage.service';
 import { Signer, UnknownLink } from '@web3-storage/w3up-client/principal/ed25519'
+import { AnyLink } from '@web3-storage/w3up-client/dist/src/types';
 
 @Component({
   selector: 'app-signup',
@@ -80,16 +81,16 @@ export class SignupComponent implements OnInit {
       
     }
     this.renamePortfolioFiles();
-    console.log(this.renamed_files);
-    console.log(this.portfolio_files);
+    // console.log(this.renamed_files);
+    // console.log(this.portfolio_files);
     // <img src="https://CID.ipfs.w3s.link/FÁJLNÉV.KIT">
-    // const directoryCid = await this.web3storageService.uploadDirectory(this.portfolio_files);
+    const directoryCid = await this.web3storageService.uploadDirectory(this.portfolio_files);
     // ez is jó: `${directoryCid}`, vagy ez: '' + directoryCid;
     // console.log(`https://${directoryCid}.ipfs.w3s.link`);
-    // let cidString = JSON.stringify(directoryCid);
-    // let cidObj = JSON.parse(cidString);
+    let cidString = JSON.stringify(directoryCid);
+    let cidObj = JSON.parse(cidString);
     // szerializáció?
-    //this.web3storageService.removeDirectory(directoryCid);
+    this.web3storageService.removeDirectory(<AnyLink>cidObj);
     this.portfolio_files = [];
     this.renamed_files = [];
   }
