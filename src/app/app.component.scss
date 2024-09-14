@@ -2,10 +2,7 @@ a {
     text-decoration: none;
     color: black;
     padding-right: 10px;
-}
-
-a:hover, a:active {
-    color:  #00524d;
+    padding: 0 0 !important;
 }
 
 .navigation-items {
@@ -14,17 +11,32 @@ a:hover, a:active {
     margin: 0;
 }
 
+.navigation-items li{
+    border-right: 2px solid #414141;
+    border-left: 2px solid #414141;
+    border-radius: 10px 10px;
+    padding: 8px 8px;
+    box-sizing: border-box;
+}
+
+.navigation-items li:active, .navigation-items li:hover {
+    border: 2px solid #414141;
+    padding: 6px 8px;
+}
+
 mat-sidenav {
     width: 250px;
 }
 
 #cim {
-    font-weight: bolder;
+    font-weight: 600;
     font-size: x-large;
     padding-left: 5px;
+    letter-spacing: 1px;
+    color: black;
 }
 
-#keres{
+#keres {
     border: none;
     border-radius: 20px;
     box-sizing: content-box;
@@ -46,4 +58,5 @@ i {
 .input-icon {
     width: fit-content;
     padding-right: 20px;
+    margin-top: 5px;
 }

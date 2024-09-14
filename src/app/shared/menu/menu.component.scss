@@ -1,16 +1,14 @@
 a {
     text-decoration: none;
+    width: 90%;
+    margin: 5px auto;
 }
 
-a:hover {
-    color: lightgray;
+a:hover:not(.lime-bgc) {
+    background-color: #242424;
 }
 
-.selected {
-    background-color: #69F0AE;
-}
-
-.selected span, .selected mat-icon{
+.lime-bgc span, .lime-bgc mat-icon {
     color: black;
 }
 
@@ -21,6 +19,6 @@ span {
     padding-top: 2px;
 }
 
-mat-icon{
+mat-icon {
     float: left;
 }

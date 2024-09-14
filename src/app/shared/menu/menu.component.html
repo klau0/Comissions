@@ -1,9 +1,9 @@
 <mat-nav-list >
-    <a mat-list-item routerLink="/main" (click)="close()" [ngClass]="selected('main') ? 'selected': '' " *ngIf="loggedInUser">
+    <a mat-list-item routerLink="/main" (click)="close()" [ngClass]="selected('main') ? 'lime-bgc': '' " *ngIf="loggedInUser">
         <mat-icon>brush</mat-icon>
         <span>Művészek</span>
     </a>
-    <a mat-list-item routerLink="/cart" (click)="close()" [ngClass]="selected('cart') ? 'selected': '' " *ngIf="loggedInUser">
+    <a mat-list-item routerLink="/cart" (click)="close()" [ngClass]="selected('cart') ? 'lime-bgc': '' " *ngIf="loggedInUser">
         <mat-icon>shopping_bag</mat-icon>
         <span>Kosár</span>
     </a>
@@ -11,11 +11,11 @@
         <mat-icon>logout</mat-icon>
         <span>Kijelentkezés</span>
     </a>
-    <a mat-list-item routerLink="/login" (click)="close()" [ngClass]="selected('login') ? 'selected': '' " *ngIf="!loggedInUser">
+    <a mat-list-item routerLink="/login" (click)="close()" [ngClass]="selected('login') ? 'lime-bgc': '' " *ngIf="!loggedInUser">
         <mat-icon>login</mat-icon>
         <span>Bejelentkezés</span>
     </a>
-    <a mat-list-item routerLink="/signup" (click)="close()" [ngClass]="selected('signup') ? 'selected': '' "*ngIf="!loggedInUser">
+    <a mat-list-item routerLink="/signup" (click)="close()" [ngClass]="selected('signup') ? 'lime-bgc': '' "*ngIf="!loggedInUser">
         <mat-icon>app_registration</mat-icon>
         <span>Regisztráció</span>
     </a>

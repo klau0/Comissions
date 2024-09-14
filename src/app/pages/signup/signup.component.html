@@ -21,13 +21,13 @@
                     <input matInput type="password" formControlName="rePswd"/>
                 </mat-form-field>
 
-                <mat-expansion-panel>
+                <mat-expansion-panel class="expansion-panel">
                     <mat-expansion-panel-header>
                         <input type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)" #fileUpload>
                         <div class="file-upload">
                             <span class="text">Profilkép</span>
-                            <button mat-mini-fab class="upload_btn" type="button" (click)="fileUpload.click()">
-                                <mat-icon>attach_file</mat-icon>
+                            <button mat-mini-fab class="upload_btn mint-bgc" type="button" (click)="fileUpload.click()">
+                                <mat-icon class="black-c">attach_file</mat-icon>
                             </button>
                             <span class="pic">{{profile_pic_name || "Tallózás"}}</span>
                         </div>
@@ -42,8 +42,8 @@
                 </mat-expansion-panel>
 
                 <div class="buttons">
-                    <button mat-raised-button color="primary" type="submit">Regisztráció</button>
-                    <button mat-raised-button color="primary" type="button" (click)="goBack()">Vissza</button>
+                    <button mat-raised-button class="lime-bgc black-c" type="submit">Regisztráció</button>
+                    <button mat-raised-button class="lime-bgc black-c" type="button" (click)="goBack()">Vissza</button>
                 </div>
             </form>
         </div>
@@ -74,13 +74,13 @@
                 </mat-form-field>
 
                 <mat-accordion multi>
-                    <mat-expansion-panel id="artist_prof_exp_panel">
+                    <mat-expansion-panel id="artist_prof_exp_panel" class="expansion-panel">
                         <mat-expansion-panel-header>
                             <input type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)" #fileUpload>
                             <div class="file-upload">
                                 <span class="text">Profilkép</span>
-                                <button mat-mini-fab class="upload_btn" type="button" (click)="fileUpload.click()">
-                                    <mat-icon>attach_file</mat-icon>
+                                <button mat-mini-fab class="upload_btn mint-bgc" type="button" (click)="fileUpload.click()">
+                                    <mat-icon class="black-c">attach_file</mat-icon>
                                 </button>
                                 <span class="pic">{{profile_pic_name || "Tallózás"}}</span>
                             </div>
@@ -94,13 +94,13 @@
                         </ng-template>
                     </mat-expansion-panel>
 
-                    <mat-expansion-panel>
+                    <mat-expansion-panel class="expansion-panel">
                         <mat-expansion-panel-header>
                             <input multiple type="file" accept="image/*" class="file-input" (change)="onFilesSelected($event)" #filesUpload>
                             <div class="file-upload">
                                 <span class="text">Portfólió képei</span>
-                                <button mat-mini-fab class="upload_btn" type="button" (click)="filesUpload.click()">
-                                    <mat-icon>attach_file</mat-icon>
+                                <button mat-mini-fab class="upload_btn mint-bgc" type="button" (click)="filesUpload.click()">
+                                    <mat-icon class="black-c">attach_file</mat-icon>
                                 </button>
                                 <span class="pic">Tallózás</span>
                             </div>
@@ -116,8 +116,8 @@
                 </mat-accordion>
 
                 <div class="buttons">
-                    <button mat-raised-button color="primary" type="submit">Regisztráció</button>
-                    <button mat-raised-button color="primary" type="button" (click)="goBack()">Vissza</button>
+                    <button mat-raised-button class="lime-bgc black-c" type="submit">Regisztráció</button>
+                    <button mat-raised-button class="lime-bgc black-c" type="button" (click)="goBack()">Vissza</button>
                 </div>
             </form>
         </div>

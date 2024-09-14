@@ -3,9 +3,9 @@ import * as Client from '@web3-storage/w3up-client'
 import { StoreMemory } from '@web3-storage/w3up-client/stores/memory'
 import * as Proof from '@web3-storage/w3up-client/proof'
 import { Signer } from '@web3-storage/w3up-client/principal/ed25519'
-import { create } from '@web3-storage/w3up-client'
 import { environment } from '../../../environments/environment.development';
-import { CARMetadata } from '@web3-storage/w3up-client/dist/src/types';
+import { AnyLink } from '@web3-storage/w3up-client/dist/src/types';
+import { toJSON, fromJSON } from 'multiformats/cid';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +35,16 @@ export class Web3storageService {
 
   removeDirectory(cid: Signer.UnknownLink){
     this.client.remove(cid, { shards: true });
+  }
+  
+  serializeCID(cid: AnyLink){
+    let cidJson = toJSON(cid);
+    return JSON.stringify(cidJson);
+  }
+
+  parseCID(cidString: string){
+    let cidParsed = JSON.parse(cidString);
+    return fromJSON(cidParsed);
   }
   
 }

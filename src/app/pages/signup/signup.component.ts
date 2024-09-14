@@ -6,8 +6,6 @@ import { Router } from '@angular/router';
 import { ThemePalette } from '@angular/material/core';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Web3storageService } from '../../shared/services/web3storage.service';
-import { Signer, UnknownLink } from '@web3-storage/w3up-client/principal/ed25519'
-import { AnyLink } from '@web3-storage/w3up-client/dist/src/types';
 
 @Component({
   selector: 'app-signup',
@@ -64,7 +62,7 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  renamePortfolioFiles(){
+  renamePortfolioFiles() {
     let i = 0;
     for (let file of this.portfolio_files){
       let splitName = file.name.split('.');
@@ -81,21 +79,20 @@ export class SignupComponent implements OnInit {
       
     }
     this.renamePortfolioFiles();
-    // console.log(this.renamed_files);
-    // console.log(this.portfolio_files);
-    // <img src="https://CID.ipfs.w3s.link/FÁJLNÉV.KIT">
-    const directoryCid = await this.web3storageService.uploadDirectory(this.portfolio_files);
-    // ez is jó: `${directoryCid}`, vagy ez: '' + directoryCid;
-    // console.log(`https://${directoryCid}.ipfs.w3s.link`);
-    let cidString = JSON.stringify(directoryCid);
-    let cidObj = JSON.parse(cidString);
-    // szerializáció?
-    this.web3storageService.removeDirectory(<AnyLink>cidObj);
+    //  console.log(this.renamed_files);
+    //  console.log(this.portfolio_files);
+    //  <img src="https://CID.ipfs.w3s.link/FÁJLNÉV.KIT">
+    //const directoryCid = await this.web3storageService.uploadDirectory(this.portfolio_files);
+    //  ez is jó: `${directoryCid}`, vagy ez: '' + directoryCid;
+    //  console.log(`https://${directoryCid}.ipfs.w3s.link`);
+    //const serializedCid = this.web3storageService.serializeCID(directoryCid);
+    //const parsedCid = this.web3storageService.parseCID(serializedCid);
+    //this.web3storageService.removeDirectory(parsedCid);
     this.portfolio_files = [];
     this.renamed_files = [];
   }
 
-  tabChanged(tabChangeEvent: MatTabChangeEvent){
+  tabChanged(tabChangeEvent: MatTabChangeEvent) {
     if (tabChangeEvent.tab.textLabel === "Művészeknek"){
       this.activeForm = this.signUpArtistForm;
     } else {
