@@ -14,10 +14,8 @@ export class Web3storageService {
   client: any;
 
   constructor() {}
-  // Agent DID: did:key:z6Mku9MRWjAVZtCL5mnCZW1QuM8t3GBGyALj6gSgg4oVZa7W
-  // Agent private key: MgCZd3eotWMQ4QFyIqS2hL5Z3IMQ09dBRXw/+XOjgeXBx5e0B2kjuItA1vbq4Mk0AX49fgdpaNokWQ3vrlUbH6qhK6d0=
-  
-  async delegateAccessToClientOnStorageSpace(){
+
+  async delegateAccessToClientOnStorageSpace() {
     // Load client with specific private key
     const principal = Signer.parse(environment.KEY);
     const store = new StoreMemory();
@@ -29,20 +27,24 @@ export class Web3storageService {
     this.client = client;
   }
 
-  uploadDirectory(files: File[]){
+  uploadDirectory(files: File[]) {
     return this.client.uploadDirectory(files);
   }
 
-  removeDirectory(cid: Signer.UnknownLink){
+  uploadFile(file: File) {
+    return this.client.uploadFile(file);
+  }
+
+  removeCID(cid: Signer.UnknownLink) {
     this.client.remove(cid, { shards: true });
   }
   
-  serializeCID(cid: AnyLink){
+  serializeCID(cid: AnyLink) {
     let cidJson = toJSON(cid);
     return JSON.stringify(cidJson);
   }
 
-  parseCID(cidString: string){
+  parseCID(cidString: string) {
     let cidParsed = JSON.parse(cidString);
     return fromJSON(cidParsed);
   }
