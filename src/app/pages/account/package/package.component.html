@@ -1,0 +1,35 @@
+<mat-card class="card">
+    <mat-card-header class="card-header">
+        <mat-card-title *ngIf="!editMode">{{name}}</mat-card-title>
+        <div *ngIf="!editMode" class="price">{{price}} Ft</div>
+
+        <mat-form-field [ngClass]="editMode ? 'show' : 'hide'" class="package-name-input">
+            <input matInput type="text" [formControl]="newName" placeholder="Megnevezés">
+        </mat-form-field>
+        <mat-form-field [ngClass]="editMode ? 'show' : 'hide'" class="package-price-input">
+            <input matInput type="number" [formControl]="newPrice" placeholder="Ár">
+        </mat-form-field>
+
+    </mat-card-header>
+    <mat-card-content>
+        <p class="desc" *ngIf="!editMode">{{desc}}</p>
+        <mat-form-field [ngClass]="editMode ? 'show' : 'hide'" class="textarea-input">
+            <textarea matInput rows="13" [formControl]="newDesc" placeholder="Leírás"></textarea>
+        </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions class="modify">
+        <button *ngIf="!editMode" mat-mini-fab (click)="editPackage()" class="greenBtn" type="button">
+            <mat-icon>create</mat-icon>
+        </button>
+        <button *ngIf="!editMode" mat-mini-fab (click)="deletePackage()" class="deleteBtn" type="button">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <button *ngIf="editMode" mat-mini-fab (click)="goBack()" class="goBackBtn" type="button">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <button *ngIf="editMode" mat-mini-fab (click)="updatePackage()" class="greenBtn" type="button">
+            <mat-icon>done</mat-icon>
+        </button>
+    </mat-card-actions>
+</mat-card>

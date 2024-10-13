@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatButtonModule,
     MatInputModule,
     FlexLayoutModule,
-    MatGridListModule
+    MatGridListModule,
+    MatIconModule
   ]
 })
 export class MainModule { }

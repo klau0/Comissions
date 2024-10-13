@@ -1,0 +1,123 @@
+<div class="full-height">
+    <div class="header">
+        <img id="profile_pic" src="../../../assets/hp.jpeg" alt="profile-picture">
+        <div class="name">Nagy Antal</div>
+    </div>
+
+    <mat-tab-group dynamicHeight mat-stretch-tabs="false" mat-align-tabs="center" class="no-border">
+        <mat-tab label="Adatok">
+            <mat-list class="data">
+                <mat-list-item class="list-item">
+                    <mat-icon matListItemIcon>email</mat-icon>
+                    <div matListItemTitle>valami&#64;gmail.com</div>
+                </mat-list-item>
+
+                <ng-container *ngIf="isArtist">
+                    <div class="list-item about">
+                        <mat-icon id="about-icon">account_circle</mat-icon>
+                        <div *ngIf="!editModeOnAbout">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at consectetur odio. Ut tortor ante, pellentesque non convallis ut, vulputate nec metus. Aliquam erat volutpat. Praesent lobortis ligula sit amet ultricies pretium. Integer ac turpis pulvinar, volutpat tellus ornare, lobortis ipsum. Phasellus tincidunt enim id ante euismod pretium. Fusce tincidunt iaculis ultricies. Etiam sollicitudin, massa at viverra posuere, mi mauris cursus nibh, vitae molestie tortor erat in urna.
+                        </div>
+                        <mat-form-field [ngClass]="editModeOnAbout ? 'show' : 'hide'" id="aboutInput">
+                            <textarea matInput rows="10">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at consectetur odio. Ut tortor ante, pellentesque non convallis ut, vulputate nec metus. Aliquam erat volutpat. Praesent lobortis ligula sit amet ultricies pretium. Integer ac turpis pulvinar, volutpat tellus ornare, lobortis ipsum. Phasellus tincidunt enim id ante euismod pretium. Fusce tincidunt iaculis ultricies. Etiam sollicitudin, massa at viverra posuere, mi mauris cursus nibh, vitae molestie tortor erat in urna.</textarea>
+                        </mat-form-field>
+                        <div class="column-flex">
+                            <button *ngIf="!editModeOnAbout" mat-mini-fab (click)="editAboutInfo()" class="greenBtn" type="button">
+                                <mat-icon>create</mat-icon>
+                            </button>
+                            <button *ngIf="editModeOnAbout" mat-mini-fab (click)="goBack()" class="goBackBtn" type="button">
+                                <mat-icon>arrow_back</mat-icon>
+                            </button>
+                            <button *ngIf="editModeOnAbout" mat-mini-fab (click)="updateAboutInfo()" class="greenBtn" type="button">
+                                <mat-icon>done</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </ng-container>
+            </mat-list>
+        </mat-tab>
+
+        <ng-container *ngIf="isArtist">
+            <mat-tab label="Portfólió">
+                <div class="portfolio-flex">
+                    <div class="image" (click)="showDeleteOption($event)">
+                        <img src="../../../assets/fall.jpg" alt="img">
+                        <div class="shadow" (click)="hideDeleteOption($event)">
+                            <button mat-mini-fab (click)="deletePortfolioImg($event)" type="button">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="image" (click)="showDeleteOption($event)">
+                        <img src="../../../assets/fall.jpg" alt="img">
+                        <div class="shadow" (click)="hideDeleteOption($event)">
+                            <button mat-mini-fab (click)="deletePortfolioImg($event)" type="button">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="image" (click)="showDeleteOption($event)">
+                        <img src="../../../assets/fall.jpg" alt="img">
+                        <div class="shadow" (click)="hideDeleteOption($event)">
+                            <button mat-mini-fab (click)="deletePortfolioImg($event)" type="button">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="image" (click)="showDeleteOption($event)">
+                        <img src="../../../assets/fall.jpg" alt="img">
+                        <div class="shadow" (click)="hideDeleteOption($event)">
+                            <button mat-mini-fab (click)="deletePortfolioImg($event)" type="button">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="image" (click)="showDeleteOption($event)">
+                        <img src="../../../assets/fall.jpg" alt="img">
+                        <div class="shadow" (click)="hideDeleteOption($event)">
+                            <button mat-mini-fab (click)="deletePortfolioImg($event)" type="button">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div id="add-img-container">
+                        <div>
+                            <input multiple type="file" accept="image/*" class="hide" (change)="addToPortfolio($event)" #filesUpload>
+                            <button mat-mini-fab (click)="filesUpload.click()" class="greenBtn" type="button">
+                                <mat-icon>add_to_photos</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+
+            <mat-tab label="Csomagok">
+                <div class="cards-flex">
+                    <app-package [name]="pName" [price]="pPrice" [desc]="pDesc"></app-package>
+                    <app-package [name]="pName" [price]="pPrice" [desc]="pDesc"></app-package>
+                    <app-package [name]="pName" [price]="pPrice" [desc]="pDesc"></app-package>
+                    <app-package [editMode]="true" *ngIf="isNewPackage" (newPackageDone)="hideNewPackage($event)"></app-package>
+                </div>
+
+                <div class="new-package">
+                    <button mat-fab extended class="mint-bgc black-c add-package-btn" (click)="showNewPackage()">
+                        <mat-icon>add</mat-icon>
+                        Új felvétele
+                    </button>
+                </div>
+            </mat-tab>
+
+            <mat-tab label="Megbízások">
+                <div class="cards-flex">
+                    <app-commission></app-commission>
+                </div>
+            </mat-tab>
+        </ng-container>
+        
+        <mat-tab label="Megrendelések">
+            <div class="cards-flex">
+                <app-order [isDone]="true"></app-order>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

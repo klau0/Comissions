@@ -53,7 +53,7 @@ export class SignupComponent implements OnInit {
     }
     this.web3storageService.delegateAccessToClientOnStorageSpace();
 
-    const web3 = new Web3("http://127.0.0.1:8545/");
+    /*const web3 = new Web3("http://127.0.0.1:8545/");
 
     web3.eth
     .getChainId()
@@ -64,6 +64,11 @@ export class SignupComponent implements OnInit {
       console.error(error);
     });
 
+    const json = require('../../../../hardhat/artifacts/contracts/TestContract.sol/TestContract.json');
+    const myContract = new web3.eth.Contract(json.abi, "0x5FbDB2315678afecb367f032d93F642f64180aa3");
+    myContract.methods.message().call().then((msg) => {
+      console.log(msg);
+    });*/
   }
 
   onFileSelected(event: any) {

@@ -1,3 +1,11 @@
+.full-height {
+    min-height: calc(100vh - 104px);
+}
+
+::ng-deep .mdc-text-field {
+    border-radius: 5px !important;
+}
+
 h1 {
     width: max-content;
     margin: 40px auto 10px;

@@ -1,6 +1,6 @@
 <mat-sidenav-container>
 
-  <mat-sidenav #sidenav>
+  <mat-sidenav #sidenav id="sidenav">
     <app-menu (selectedPage)="changePage($event)" [currentPage]="page" *ngIf="page" (onCloseSidenav)="onClose($event, sidenav)" [loggedInUser]="loggedInUser"></app-menu>
   </mat-sidenav>
 
@@ -8,21 +8,21 @@
     <mat-toolbar class="green-bgc">
       <div fxHide.gt-xs>
         <button mat-icon-button (click)="onToggleSidenav(sidenav)">
-          <mat-icon>menu</mat-icon>
+          <mat-icon id="menu-icon">menu</mat-icon>
         </button>
       </div>
       <div id="cim">Comissions</div>
       <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
-        <div *ngIf="page === 'main'" class="input-icon">
+        <div *ngIf="page === 'main'" class="search">
           <i class="fa fa-search icon"></i>
           <input matInput id="keres" placeholder="Keresés" type="text" name="search" size="25">
         </div>
-        <ul fxLayout fxLayoutGap="10px" class="navigation-items">
-          <li *ngIf="loggedInUser"><a routerLink="/main">Művészek</a></li>
-          <li *ngIf="loggedInUser"><a routerLink="/cart">Kosár</a></li>
-          <li *ngIf="!(loggedInUser)"><a routerLink="/login">Bejelentkezés</a></li>
-          <li *ngIf="loggedInUser"><a routerLink="/login">Kijelentkezés</a></li>
-          <li *ngIf="!(loggedInUser)"><a routerLink="/signup">Regisztráció</a></li>
+        <ul fxLayout fxLayoutGap="10px" id="navigation-items">
+          <li *ngIf="loggedInUser"><div><a routerLink="/main" (click)="onMenuSelected($event)">Művészek</a></div></li>
+          <li *ngIf="!(loggedInUser)"><div><a routerLink="/login" (click)="onMenuSelected($event)">Bejelentkezés</a></div></li>
+          <li *ngIf="loggedInUser"><div><a routerLink="/account" (click)="onMenuSelected($event)">Fiók</a></div></li>
+          <li *ngIf="loggedInUser"><div><a routerLink="/login" (click)="onMenuSelected($event)">Kijelentkezés</a></div></li>
+          <li *ngIf="!(loggedInUser)"><div><a routerLink="/signup" (click)="onMenuSelected($event)">Regisztráció</a></div></li>
         </ul>
       </div>
     </mat-toolbar>

@@ -1,3 +1,15 @@
+.no-border ::ng-deep .mat-mdc-tab-label-container {
+    border: none;
+}
+
+::ng-deep .mdc-text-field, ::ng-deep .mat-expansion-panel {
+    border-radius: 5px !important;
+}
+
+::ng-deep .mat-mdc-tab {
+    font-size: 16px !important;
+}
+
 h1 {
     width: max-content;
     margin: 40px auto 20px;

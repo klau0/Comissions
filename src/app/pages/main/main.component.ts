@@ -24,7 +24,7 @@ export class MainComponent implements OnInit{
 
   }
   
-  to_profile(){
+  toProfile(){
     // TODO
   }
 }

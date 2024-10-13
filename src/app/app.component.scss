@@ -1,3 +1,7 @@
+#sidenav {
+    border-radius: unset;
+}
+
 a {
     text-decoration: none;
     color: black;
@@ -5,23 +9,54 @@ a {
     padding: 0 0 !important;
 }
 
-.navigation-items {
+#navigation-items {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.navigation-items li{
-    border-right: 2px solid #414141;
-    border-left: 2px solid #414141;
-    border-radius: 10px 10px;
-    padding: 8px 8px;
-    box-sizing: border-box;
+#navigation-items li {
+    padding: 9px;
 }
 
-.navigation-items li:active, .navigation-items li:hover {
-    border: 2px solid #414141;
-    padding: 6px 8px;
+#navigation-items li:hover {
+    border: 3px solid #414141;
+    padding: unset;
+    div {
+        padding: 5px;
+        border: 2px solid #8da83b;
+        position: relative;
+
+        &::before, &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            background: #8da83b;
+        }
+        &::before {
+            top: -4px;
+            bottom: -4px;
+            left: 5px;
+            right: 5px;
+        }
+        &::after{
+            left: -4px;
+            right: -4px;
+            top: 5px;
+            bottom: 5px;
+        }
+        a {
+            position: relative;
+            z-index: 1;
+        }
+    }
+}
+
+.active {
+    font-weight: 500;
 }
 
 mat-sidenav {
@@ -55,8 +90,16 @@ i {
     min-width: 40px;
 }
 
-.input-icon {
+.search {
     width: fit-content;
     padding-right: 20px;
     margin-top: 5px;
+    input:focus {
+        outline: none;
+        box-shadow: 0 0 5pt 0.5pt black;
+    }
+}
+
+#menu-icon {
+    color: black;
 }

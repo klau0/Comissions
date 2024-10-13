@@ -13,7 +13,8 @@ export class AppComponent implements OnInit {
   title = 'comissions-project';
   page = '';
   routes: Array<string> = [];
-  loggedInUser = false;
+  loggedInUser = true;
+  lastSelectedMenu: HTMLElement | null = null;
 
   constructor(private router: Router) {}
 
@@ -28,6 +29,16 @@ export class AppComponent implements OnInit {
         this.page = currentPage;
       }
     });
+  }
+
+  onMenuSelected($event: Event){
+    const target = $event.target as HTMLElement;
+
+    if (this.lastSelectedMenu !== target){
+      target.classList.add('active');
+      this.lastSelectedMenu?.classList.remove('active');
+      this.lastSelectedMenu = target;
+    }
   }
 
   changePage(selectedPage: string) {

@@ -1,0 +1,81 @@
+.card {
+    background-color: #2b2b2b;
+    margin: 10px 10px;
+    border-radius: 10px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+::ng-deep .mat-mdc-card-title {
+    margin-right: 10px;
+}
+
+.price {
+    background-color: #294c3d;
+    color: #a7ffc1;
+    padding: 5px;
+    font-size: large;
+    border-radius: 10px;
+    white-space: nowrap !important;
+}
+
+.artist-icon {
+    color: #deb72e;
+}
+
+.title {
+    margin-top: 10px;
+    font-size: 18px;
+    border-bottom: 2px solid #deb72e;
+    width: max-content;
+    padding: 0 5px;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    mat-icon {
+        transform: scale(0.8);
+    }
+}
+
+.vertical-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.request-desc {
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.order-state {
+    width: 100%;
+    background-color: #8d8d8d;
+    color: black;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 7px;
+    mat-icon {
+        margin-right: 5px;
+    }
+}
+
+.download-title {
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 1190px) {
+    .card-header {
+        flex-wrap: wrap;
+        row-gap: 10px;
+    }
+}

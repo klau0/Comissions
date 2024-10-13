@@ -1,0 +1,26 @@
+<mat-card class="card">
+    <mat-card-header class="card-header">
+        <mat-card-title>Családi kép háziállattal</mat-card-title>
+        <div class="price">5000 Ft</div>
+    </mat-card-header>
+
+    <mat-card-content>
+        <div class="title">Megbízók</div>
+        <mat-accordion multi>
+            <app-requester></app-requester>
+            <app-requester></app-requester>
+            <app-requester></app-requester>
+        </mat-accordion>
+        <div class="title all">Összesen</div>
+        <div class="flex-container">
+            <div class="flex-container people-flex">
+                <mat-icon class="people-icon">people</mat-icon>
+                <span>3</span>
+            </div>
+            <div class="flex-container money-flex">
+                <mat-icon>attach_money</mat-icon>
+                <span>15000</span>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

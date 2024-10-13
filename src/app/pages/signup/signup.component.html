@@ -1,6 +1,6 @@
 <h1>Regisztráció</h1>
 
-<mat-tab-group dynamicHeight mat-stretch-tabs="false" mat-align-tabs="center" (selectedTabChange)="tabChanged($event)">
+<mat-tab-group dynamicHeight mat-stretch-tabs="false" mat-align-tabs="center" (selectedTabChange)="tabChanged($event)" class="no-border">
     <mat-tab label="Felhasználóknak">
         <div class="center">
             <form [formGroup]="signUpUserForm" (ngSubmit)="onSubmit($event)">
@@ -108,7 +108,7 @@
 
                         <ng-template matExpansionPanelContent>
                             <div class="pics">
-                                <span *ngIf="portfolio_urls.length == 0">Nincs még kiválasztva kép</span>
+                                <span *ngIf="portfolio_urls.length === 0">Nincs még kiválasztva kép</span>
                                 <img *ngFor="let url of portfolio_urls" src="{{url}}">
                             </div>
                         </ng-template>

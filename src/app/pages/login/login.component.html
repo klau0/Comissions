@@ -1,22 +1,24 @@
-<div class="load center" *ngIf="loading">
-    <mat-spinner></mat-spinner>
-</div>
-
-<h1>Bejelentkezés</h1>
-
-<div class="container">
-    <form>
-        <mat-form-field>
-            <mat-label>Email: </mat-label>
-            <input matInput type="email" [formControl]="email">
-        </mat-form-field>
-        <mat-form-field>
-            <mat-label>Jelszó: </mat-label>
-            <input matInput type="password" [formControl]="password">
-        </mat-form-field>
-
-        <span class="center">
-            <button mat-raised-button class="lime-bgc black-c" (click)="login()">OK</button>
-        </span>
-    </form>
+<div class="full-height">
+    <div class="load center" *ngIf="loading">
+        <mat-spinner></mat-spinner>
+    </div>
+    
+    <h1>Bejelentkezés</h1>
+    
+    <div class="container">
+        <form>
+            <mat-form-field>
+                <mat-label>Email: </mat-label>
+                <input matInput type="email" [formControl]="email">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Jelszó: </mat-label>
+                <input matInput type="password" [formControl]="password">
+            </mat-form-field>
+    
+            <span class="center">
+                <button mat-raised-button class="lime-bgc black-c" (click)="login()">OK</button>
+            </span>
+        </form>
+    </div>
 </div>
