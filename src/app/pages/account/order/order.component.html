@@ -11,7 +11,7 @@
     <mat-card-content>
         <div class="title">Kérés</div>
         <p class="request-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at consectetur odio. Ut tortor ante, pellentesque non convallis ut, vulputate nec metus. Aliquam erat volutpat. Praesent lobortis ligula sit amet ultricies pretium. Integer ac turpis pulvinar, volutpat tellus ornare, lobortis ipsum. Phasellus tincidunt enim id ante euismod pretium. Fusce tincidunt iaculis ultricies. Etiam sollicitudin, massa at viverra posuere, mi mauris cursus nibh, vitae molestie tortor erat in urna.</p>
-        <div class="order-state">
+        <div class="order-state" [ngClass]="isDone ? 'done-state' : ''">
             <ng-container *ngIf="!isDone">
                 <div class="flex-container">
                     <mat-icon>access_time</mat-icon>
@@ -19,14 +19,15 @@
                 </div>
             </ng-container>
             <ng-container *ngIf="isDone">
-                <div class="vertical-flex">
+                <div class="space-between-flex">
                     <div class="flex-container">
                         <mat-icon>done</mat-icon>
                         <span>Elkészült</span>
                     </div>
-                    <span class="download-title">Képek letöltése</span>
-                    <a href="../../../assets/fall.jpg" download>
-                    </a>
+                    <button mat-fab extended (click)="openImageViewDialog()" class="view-images-btn">
+                        <mat-icon>photo</mat-icon>
+                        Megtekintés
+                    </button>
                 </div>
             </ng-container>
         </div>

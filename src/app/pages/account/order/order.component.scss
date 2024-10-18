@@ -45,11 +45,11 @@
     }
 }
 
-.vertical-flex {
+.space-between-flex {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 5px 0;
 }
 
 .request-desc {
@@ -59,18 +59,32 @@
 
 .order-state {
     width: 100%;
-    background-color: #8d8d8d;
+    background-color: #828282;
     color: black;
     box-sizing: border-box;
     border-radius: 10px;
-    padding: 7px;
+    padding: 10px 5px;
+    font-weight: 500;
     mat-icon {
-        margin-right: 5px;
+        margin-right: 3px;
+        transform: scale(1);
     }
 }
 
-.download-title {
-    margin-top: 10px;
+.done-state {
+    background-color: #33613b;
+    color: white;
+}
+
+.view-images-btn {
+    background-color: #2f2f2f;
+    color: #dfdf1c;
+    padding: 7px 13px 7px 15px !important;
+    height: max-content !important;
+    mat-icon {
+        margin-right: 3px !important;
+        transform: scale(0.8);
+    }
 }
 
 @media only screen and (max-width: 1190px) {

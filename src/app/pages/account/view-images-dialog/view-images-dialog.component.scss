@@ -1,0 +1,46 @@
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px;
+}
+
+.image {
+    max-width: 350px;
+}
+
+.back-btn {
+    color: #85ffea;
+    background-color: #005446;
+}
+
+.actions {
+    padding-top: 6px;
+}
+
+.title {
+    padding-bottom: 5px;
+}
+
+@media only screen and (max-width: 520px) {
+    .image {
+        max-width: 300px;
+    }
+    .flex {
+        padding: 0 10px;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .image {
+        max-width: 250px;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .image {
+        max-width: 240px;
+    }
+}

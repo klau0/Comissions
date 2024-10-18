@@ -1,5 +1,6 @@
 html, body { 
   height: 100%; 
+  scrollbar-color: #adadad #646464;
 }
 
 body { 
@@ -33,4 +34,9 @@ body {
 
 .dark-bgc {
   background-color: #2e2e2e;
+}
+
+.grey-bg {
+  background-color:rgba(75, 75, 75, 0.6);
+  backdrop-filter: blur(15px);
 }

@@ -1,61 +1,67 @@
 <div class="full-height dark-bgc">
     <div fxLayout.xs="column" fxLayout="row wrap" fxLayoutAlign="center center">
-        <mat-card class="card" (click)="toProfile()">
-            <mat-card-header>
-                <div class="header">
-                <div mat-card-avatar class="avatar"></div>
-                <mat-card-title>Nagy Antal</mat-card-title>
-                </div>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-grid-list cols="2" rowHeight="fit" gutterSize="10px">
-                    <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
-                    <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
-                    <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
-                    <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
-                </mat-grid-list>
-                <p class="artist-about">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at consectetur odio. Ut tortor ante, pellentesque non convallis ut, vulputate nec metus. Aliquam erat volutpat. Praesent lobortis ligula sit amet ultricies pretium. Integer ac turpis pulvinar, volutpat tellus ornare, lobortis ipsum. Phasellus tincidunt enim id ante euismod pretium. Fusce tincidunt iaculis ultricies. Etiam sollicitudin, massa at viverra posuere, mi mauris cursus nibh, vitae molestie tortor erat in urna.
-                </p>
-            </mat-card-content>
-        </mat-card>
-        <mat-card class="card" (click)="toProfile()">
-            <mat-card-header>
-                <div class="header">
-                <div mat-card-avatar class="avatar"></div>
-                <mat-card-title>Nagy Antal</mat-card-title>
-                </div>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-grid-list cols="2" rowHeight="fit" gutterSize="10px">
-                    <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
-                    <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
-                    <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
-                    <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
-                </mat-grid-list>
-                <p class="artist-about">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at consectetur odio. Ut tortor ante, pellentesque non convallis ut, vulputate nec metus. Aliquam erat volutpat. Praesent lobortis ligula sit amet ultricies pretium. Integer ac turpis pulvinar, volutpat tellus ornare, lobortis ipsum. Phasellus tincidunt enim id ante euismod pretium. Fusce tincidunt iaculis ultricies. Etiam sollicitudin, massa at viverra posuere, mi mauris cursus nibh, vitae molestie tortor erat in urna.
-                </p>
-            </mat-card-content>
-        </mat-card>
-        <mat-card class="card" (click)="toProfile()">
-            <mat-card-header>
-                <div class="header">
-                <div mat-card-avatar class="avatar"></div>
-                <mat-card-title>Nagy Antal</mat-card-title>
-                </div>
-            </mat-card-header>
-            <mat-card-content>
-                <mat-grid-list cols="2" rowHeight="fit" gutterSize="10px">
-                    <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
-                    <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
-                    <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
-                    <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
-                </mat-grid-list>
-                <p class="artist-about">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at consectetur odio. Ut tortor ante, pellentesque non convallis ut, vulputate nec metus. Aliquam erat volutpat. Praesent lobortis ligula sit amet ultricies pretium. Integer ac turpis pulvinar, volutpat tellus ornare, lobortis ipsum. Phasellus tincidunt enim id ante euismod pretium. Fusce tincidunt iaculis ultricies. Etiam sollicitudin, massa at viverra posuere, mi mauris cursus nibh, vitae molestie tortor erat in urna.
-                </p>
-            </mat-card-content>
-        </mat-card>
+        <a routerLink="/artist-profile/{{artistId}}" class="profile-link">
+            <mat-card class="card">
+                <mat-card-header>
+                    <div class="header">
+                    <div mat-card-avatar class="avatar"></div>
+                    <mat-card-title>Nagy Antal</mat-card-title>
+                    </div>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-grid-list cols="2" rowHeight="fit" gutterSize="10px">
+                        <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
+                        <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
+                        <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
+                        <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
+                    </mat-grid-list>
+                    <p class="artist-about">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at consectetur odio. Ut tortor ante, pellentesque non convallis ut, vulputate nec metus. Aliquam erat volutpat. Praesent lobortis ligula sit amet ultricies pretium. Integer ac turpis pulvinar, volutpat tellus ornare, lobortis ipsum. Phasellus tincidunt enim id ante euismod pretium. Fusce tincidunt iaculis ultricies. Etiam sollicitudin, massa at viverra posuere, mi mauris cursus nibh, vitae molestie tortor erat in urna.
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </a>
+        <a routerLink="/artist-profile/{{artistId}}" class="profile-link">
+            <mat-card class="card">
+                <mat-card-header>
+                    <div class="header">
+                    <div mat-card-avatar class="avatar"></div>
+                    <mat-card-title>Nagy Antal</mat-card-title>
+                    </div>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-grid-list cols="2" rowHeight="fit" gutterSize="10px">
+                        <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
+                        <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
+                        <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
+                        <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
+                    </mat-grid-list>
+                    <p class="artist-about">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at consectetur odio. Ut tortor ante, pellentesque non convallis ut, vulputate nec metus. Aliquam erat volutpat. Praesent lobortis ligula sit amet ultricies pretium. Integer ac turpis pulvinar, volutpat tellus ornare, lobortis ipsum. Phasellus tincidunt enim id ante euismod pretium. Fusce tincidunt iaculis ultricies. Etiam sollicitudin, massa at viverra posuere, mi mauris cursus nibh, vitae molestie tortor erat in urna.
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </a>
+        <a routerLink="/artist-profile/{{artistId}}" class="profile-link">
+            <mat-card class="card">
+                <mat-card-header>
+                    <div class="header">
+                    <div mat-card-avatar class="avatar"></div>
+                    <mat-card-title>Nagy Antal</mat-card-title>
+                    </div>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-grid-list cols="2" rowHeight="fit" gutterSize="10px">
+                        <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
+                        <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
+                        <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
+                        <mat-grid-tile><img mat-card-image src="../../../assets/fall.jpg" alt="img"></mat-grid-tile>
+                    </mat-grid-list>
+                    <p class="artist-about">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at consectetur odio. Ut tortor ante, pellentesque non convallis ut, vulputate nec metus. Aliquam erat volutpat. Praesent lobortis ligula sit amet ultricies pretium. Integer ac turpis pulvinar, volutpat tellus ornare, lobortis ipsum. Phasellus tincidunt enim id ante euismod pretium. Fusce tincidunt iaculis ultricies. Etiam sollicitudin, massa at viverra posuere, mi mauris cursus nibh, vitae molestie tortor erat in urna.
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </a>
     </div>
 </div>

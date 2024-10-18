@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { CommissionDoneDialogComponent } from '../commission-done-dialog/commission-done-dialog.component';
 
 @Component({
   selector: 'app-requester',
@@ -6,26 +8,13 @@ import { Component } from '@angular/core';
   styleUrl: './requester.component.scss'
 })
 export class RequesterComponent {
-  isCommissionDone = false;
-  requestedImages: File[] = [];
-
-  onFilesSelected(event: any) {
-    for (let file of event.target.files) {
-      this.requestedImages.push(file);
-    }
-  }
-
-  sendImagesToRequester() {
-    // todo: - küldés megvalósítása
-    //       - requests mappingből törölni az adott requestet ?? (kell a megrendelések lekéréséhez is)
-  }
+  readonly dialog = inject(MatDialog);
 
   markCommissionAsDone() {
-    this.isCommissionDone = true;
-  }
-
-  markCommissionAsNotDone() {
-    this.isCommissionDone = false;
-    this.requestedImages = [];
+    this.dialog.open(CommissionDoneDialogComponent, {
+      backdropClass: 'grey-bg',
+      autoFocus : 'dialog',
+      data: { name: 'Kis Antal' }
+    });
   }
 }

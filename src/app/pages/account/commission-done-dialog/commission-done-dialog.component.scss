@@ -1,0 +1,46 @@
+.flex-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.add-img-btn {
+    background-color: #5b5b5b;
+    color: #cecece;
+}
+
+.attached-file-btn {
+    color: #84e825;
+}
+
+.send-btn {
+    margin-right: 7px;
+    background-color: #363636;
+    color: #ffda3c;
+    padding: 7px 12px 7px 17px !important;
+    height: max-content !important;
+    mat-icon {
+        margin-right: 3px !important;
+        transform: scale(0.8);
+    }
+}
+
+.cancel-btn {
+    color: #ff7022;
+}
+
+.content-container {
+    background-color: #2e2e2e;
+    padding: 30px !important;
+    border-radius: 10px !important;
+    margin: 10px !important;
+    font-size: 16px;
+}
+
+.file-input {
+    margin-right: 10px;
+}
+
+.hide {
+    display: none;
+}

@@ -19,7 +19,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule)
   },
   {
-    path: 'artist-profile',
+    path: 'artist-profile/:artistId',
     loadChildren: () => import('./pages/artist-profile/artist-profile.module').then(m => m.ArtistProfileModule)
   },
   {
@@ -34,7 +34,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true })],
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

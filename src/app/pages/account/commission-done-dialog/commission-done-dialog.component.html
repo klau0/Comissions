@@ -1,0 +1,25 @@
+<h5 mat-dialog-title>Megbízás teljesítése</h5>
+<mat-dialog-content class="content-container">
+    <div class="flex-container">
+        <div class="file-input">
+            <input multiple type="file" accept="image/*" class="hide" (change)="onFilesSelected($event)" #filesUpload>
+            <button mat-mini-fab [ngClass]="requestedImages.length === 0 ? '' : 'attached-file-btn'" (click)="filesUpload.click()" class="add-img-btn" type="button">
+                <mat-icon>attach_file</mat-icon>
+            </button>
+        </div>
+        <span *ngIf="requestedImages.length === 0">Tallózás</span>
+        <div *ngIf="requestedImages.length !== 0">
+            <span>{{requestedImages.length}}</span> kép kiválasztva
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-fab extended class="send-btn" (click)="sendImagesToRequester()" type="button">
+        <mat-icon>send</mat-icon>
+        Küldés
+    </button>
+    <button mat-fab extended class="send-btn cancel-btn" (click)="goBack()" type="button">
+        <mat-icon>cancel</mat-icon>
+        Mégsem
+    </button>
+</mat-dialog-actions>

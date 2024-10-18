@@ -6,6 +6,8 @@ import { PackageComponent } from './package/package.component';
 import { CommissionComponent } from './commission/commission.component';
 import { RequesterComponent } from './requester/requester.component';
 import { OrderComponent } from './order/order.component';
+import { CommissionDoneDialogComponent } from './commission-done-dialog/commission-done-dialog.component';
+import { ViewImagesDialogComponent } from './view-images-dialog/view-images-dialog.component';
 
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatListModule } from '@angular/material/list';
@@ -18,6 +20,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -26,7 +29,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     PackageComponent,
     CommissionComponent,
     RequesterComponent,
-    OrderComponent
+    OrderComponent,
+    CommissionDoneDialogComponent,
+    ViewImagesDialogComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +46,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatInputModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDialogModule
   ]
 })
 export class AccountModule { }

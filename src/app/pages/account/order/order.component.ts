@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewImagesDialogComponent } from '../view-images-dialog/view-images-dialog.component';
 
 @Component({
   selector: 'app-order',
@@ -7,5 +9,14 @@ import { Component, Input } from '@angular/core';
 })
 export class OrderComponent {
   @Input() isDone = false;
+  readonly dialog = inject(MatDialog);
 
+  openImageViewDialog() {
+    this.dialog.open(ViewImagesDialogComponent, {
+      maxWidth: '80vw',
+      backdropClass: 'grey-bg',
+      autoFocus: 'dialog',
+      data: { images: ['../../../assets/fall.jpg'] }
+    });
+  }
 }
