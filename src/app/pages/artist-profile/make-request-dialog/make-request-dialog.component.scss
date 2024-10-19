@@ -1,0 +1,33 @@
+.title {
+    padding-bottom: 0;
+}
+
+#price {
+    font-size: 17px;
+    margin-bottom: 15px;
+    color: #79d81e;
+}
+
+#requestInput {
+    width: 100%;
+}
+
+.actions {
+    padding-top: 6px;
+}
+
+.buy-btn {
+    margin-right: 7px;
+    background-color: #363636;
+    color: #79d81e;
+    padding: 7px 12px 7px 17px !important;
+    height: max-content !important;
+    mat-icon {
+        margin-right: 3px !important;
+        transform: scale(0.8);
+    }
+}
+
+.cancel-btn {
+    color: #ff7022;
+}

@@ -16,17 +16,27 @@ export class LoginComponent {
   constructor(private router: Router, private snackBar: MatSnackBar){}
 
   async login() {
-    this.loading = true;
-
-    try {
-      // TODO
-
+    if (this.isInputValid()) {
+      this.loading = true;
+      // TODO: get user id from backend etc.
+      const userId = self.crypto.randomUUID();
+      // Put user id in session
+      sessionStorage.setItem("uid", userId);
+      this.loading = false;
       this.router.navigateByUrl('/main');
-      this.loading = false;
-    } catch (e){
-      this.loading = false;
-      if (e instanceof Error) this.snackBar.open(e.message, '', { duration: 3000 });
     }
+  }
+
+  isInputValid(): boolean {
+    if (this.password.invalid || this.email.value === '') {
+      this.snackBar.open('Adja meg a belépési adatokat!', '', { duration: 3000 });
+      return false;
+    } else if (this.email.invalid) {
+      this.snackBar.open('Helytelen e-mail cím!', '', { duration: 3000 });
+      return false;
+    }
+
+    return true;
   }
 
 }

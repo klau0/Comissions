@@ -8,16 +8,16 @@
     <div class="container">
         <form>
             <mat-form-field>
-                <mat-label>Email: </mat-label>
+                <mat-label>Email</mat-label>
                 <input matInput type="email" [formControl]="email">
             </mat-form-field>
             <mat-form-field>
-                <mat-label>Jelszó: </mat-label>
+                <mat-label>Jelszó</mat-label>
                 <input matInput type="password" [formControl]="password">
             </mat-form-field>
-    
+
             <span class="center">
-                <button mat-raised-button class="lime-bgc black-c" (click)="login()">OK</button>
+                <button mat-raised-button class="lime-bgc black-c" (click)="login()" type="button">OK</button>
             </span>
         </form>
     </div>

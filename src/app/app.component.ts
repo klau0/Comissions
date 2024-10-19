@@ -13,12 +13,9 @@ export class AppComponent implements OnInit {
   title = 'comissions-project';
   page = '';
   routes: Array<string> = [];
-  loggedInUser = true;
-  lastSelectedMenu: HTMLElement | null = null;
+  loggedInUser = false;
 
   constructor(private router: Router) {}
-
-  // TODO: logout service? change loggedInUser to false;
 
   ngOnInit() {
     this.routes = this.router.config.map(conf => conf.path) as string[];
@@ -27,25 +24,15 @@ export class AppComponent implements OnInit {
       const currentPage = (evts.urlAfterRedirects as string).split('/')[1] as string;
       if (this.routes.includes(currentPage)) {
         this.page = currentPage;
+
+        if (sessionStorage.getItem('uid')) {
+          this.loggedInUser = true;
+        }
       }
     });
   }
 
-  onMenuSelected($event: Event){
-    const target = $event.target as HTMLElement;
-
-    if (this.lastSelectedMenu !== target){
-      target.classList.add('active');
-      this.lastSelectedMenu?.classList.remove('active');
-      this.lastSelectedMenu = target;
-    }
-  }
-
-  changePage(selectedPage: string) {
-    this.router.navigateByUrl(selectedPage);
-  }
-
-  onClose(event: any, sidenav: MatSidenav) {
+  onClose(event: boolean, sidenav: MatSidenav) {
     if (event === true) {
       sidenav.close();
     }
@@ -53,5 +40,12 @@ export class AppComponent implements OnInit {
 
   onToggleSidenav(sidenav: MatSidenav) {
     sidenav.toggle();
+  }
+
+  onLogout(event: boolean) {
+    if (event === true) {
+      this.loggedInUser = false;
+      sessionStorage.removeItem("uid");
+    }
   }
 }

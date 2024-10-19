@@ -8,14 +8,14 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class MenuComponent {
   @Input() currentPage: string = '';
   @Input() loggedInUser: boolean = false;
-  @Output() selectedPage: EventEmitter<string> = new EventEmitter();
   @Output() onCloseSidenav: EventEmitter<boolean> = new EventEmitter();
+  @Output() logout: EventEmitter<boolean> = new EventEmitter();
 
   close(logout?: boolean) {
     this.onCloseSidenav.emit(true);
-    /*if (logout === true) {
-      this.onLogout.emit(logout);
-    }*/
+    if (logout === true) {
+      this.logout.emit(true);
+    }
   }
 
   selected(s: string): boolean {

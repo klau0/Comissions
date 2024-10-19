@@ -15,34 +15,11 @@
     margin-right: 10px;
 }
 
-.package-name-input {
-    display: none;
-    width: 70%;
-}
-
-.package-price-input {
-    display: none;
-    width: 28%;
-}
-
-.textarea-input {
-    display: none;
-    width: 100%;
-}
-
 .desc {
     margin: 0;
 }
 
-.hide {
-    display: none;
-}
-
-.show {
-    display: block;
-}
-
-.modify {
+.request {
     margin: 10px auto 6px auto;
  }
 
@@ -55,22 +32,14 @@
     white-space: nowrap !important;
 }
 
-.deleteBtn {
-    margin-left: 10px;
-    color: #ffa0a0;
-    background-color: #730000;
-}
-
-.greenBtn {
-    margin-left: 10px;
-    color: #7effb4;
-    background-color: #095229;
-}
-
-.goBackBtn {
-    margin-left: 10px;
-    color: #85ffea;
-    background-color: #005446;
+.request-btn {
+    margin-right: 7px;
+    padding: 7px 12px 7px 17px !important;
+    height: max-content !important;
+    mat-icon {
+        margin-right: 3px !important;
+        transform: scale(0.8);
+    }
 }
 
 @media only screen and (max-width: 1190px) {

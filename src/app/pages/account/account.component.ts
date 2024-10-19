@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
@@ -10,10 +12,13 @@ export class AccountComponent implements OnInit {
   isArtist: boolean = true;
   editModeOnAbout = false;
   isNewPackage = false;
+  about = new FormControl('', Validators.required);
   // TODO: kivenni majd
   pName = "Családi kép háziállattal";
   pPrice = 5000;
   pDesc ='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at consectetur odio. Ut tortor ante, pellentesque non convallis ut, vulputate nec metus. Aliquam erat volutpat. Praesent lobortis ligula sit amet ultricies pretium. Integer ac turpis pulvinar, volutpat tellus ornare, lobortis ipsum. Phasellus tincidunt enim id ante euismod pretium. Fusce tincidunt iaculis ultricies. Etiam sollicitudin, massa at viverra posuere, mi mauris cursus nibh, vitae molestie tortor erat in urna.'
+
+  constructor(private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     
@@ -34,6 +39,7 @@ export class AccountComponent implements OnInit {
   }
 
   editAboutInfo() {
+    this.about.setValue('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at consectetur odio. Ut tortor ante, pellentesque non convallis ut, vulputate nec metus. Aliquam erat volutpat. Praesent lobortis ligula sit amet ultricies pretium. Integer ac turpis pulvinar, volutpat tellus ornare, lobortis ipsum. Phasellus tincidunt enim id ante euismod pretium. Fusce tincidunt iaculis ultricies. Etiam sollicitudin, massa at viverra posuere, mi mauris cursus nibh, vitae molestie tortor erat in urna.');
     this.editModeOnAbout = true;
   }
 
@@ -42,8 +48,12 @@ export class AccountComponent implements OnInit {
   }
 
   updateAboutInfo() {
-    // TODO
-    this.editModeOnAbout = false;
+    if (this.about.valid) {
+      // TODO
+      this.editModeOnAbout = false;
+    } else {
+      this.snackBar.open('Adja meg az új leírást!', '', { duration: 3000 });
+    }
   }
 
   deletePortfolioImg($event: Event) {

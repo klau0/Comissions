@@ -10,7 +10,6 @@ import { CommissionDoneDialogComponent } from './commission-done-dialog/commissi
 import { ViewImagesDialogComponent } from './view-images-dialog/view-images-dialog.component';
 
 import { MatTabsModule } from '@angular/material/tabs';
-import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -37,7 +36,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     CommonModule,
     AccountRoutingModule,
     MatTabsModule,
-    MatListModule,
     MatIconModule,
     MatCardModule,
     MatGridListModule,

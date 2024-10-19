@@ -1,0 +1,147 @@
+.full-height {
+    min-height: calc(100vh - 64px);
+    line-height: 1.3;
+}
+
+::ng-deep .mat-mdc-tab {
+    font-size: 18px !important;
+}
+
+.no-border ::ng-deep .mat-mdc-tab-label-container {
+    border: none;
+}
+
+app-artist-package {
+    width: 30%;
+    max-width: 600px;
+}
+
+#profile_pic {
+    width: 8vw;
+    border-radius: 70px 70px;
+}
+
+.header {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    margin: 0 auto;
+    padding: 25px 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.name {
+    font-size: 26px;
+    padding-left: 10px;
+}
+
+.data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.about {
+    display: flex;
+    align-items: flex-start;
+    width: 45%;
+    height: max-content !important;
+    max-width: 600px;
+    background-color: #2b2b2b;
+    border-radius: 20px;
+    padding: 10px;
+    margin: 12px auto;
+    div {
+        white-space: normal;
+    }
+}
+
+#about-icon {
+    overflow: unset !important;
+    padding-right: 15px;
+}
+
+.cards-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+.portfolio-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 15px 0;
+    gap: 10px;
+    img {
+        display: block;
+        max-width: 300px;
+        border-radius: 10px;
+    }
+}
+
+@media only screen and (max-width: 1350px) {
+    app-artist-package {
+        width: 35%;
+    }
+}
+
+@media only screen and (max-width: 1250px) {
+    app-artist-package {
+        width: 40%;
+    }
+    .about {
+        width: 55%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    app-artist-package {
+        width: 45%;
+    }
+    .about {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    app-artist-package {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    app-artist-package {
+        width: 60%;
+    }
+    .about {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    app-artist-package {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 630px) {
+    app-artist-package {
+        width: 80%;
+    }
+    .about {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    app-artist-package {
+        width: 100%;
+    }
+}

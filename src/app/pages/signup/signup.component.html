@@ -16,10 +16,11 @@
                     <mat-label>Jelszó</mat-label>
                     <input matInput type="password" formControlName="pswd"/>
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field class="last-input">
                     <mat-label>Jelszó újra</mat-label>
                     <input matInput type="password" formControlName="rePswd"/>
                 </mat-form-field>
+                <div class="required">*Kötelező megadni</div>
 
                 <mat-expansion-panel class="expansion-panel">
                     <mat-expansion-panel-header>
@@ -68,10 +69,11 @@
                     <mat-label>Jelszó újra</mat-label>
                     <input matInput type="password" formControlName="rePswd"/>
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field class="last-input">
                     <mat-label>Rólam</mat-label>
                     <textarea matInput formControlName="about"></textarea>
                 </mat-form-field>
+                <div class="required">*Kötelező megadni</div>
 
                 <mat-accordion multi>
                     <mat-expansion-panel id="artist_prof_exp_panel" class="expansion-panel">

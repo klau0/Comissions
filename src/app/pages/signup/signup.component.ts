@@ -15,10 +15,8 @@ import { Web3 } from "web3";
 export class SignupComponent implements OnInit {
   profile_url = '';
   profile: File = new File([], '');
-  renamed_profile: File = new File([], '');
   portfolio_urls: string[] = [];
   portfolio_files: File[] = [];
-  renamed_portfolio_files: File[] = [];
   serializedFiles: string[] = [];
 
   signUpUserForm = new FormGroup({
@@ -33,7 +31,7 @@ export class SignupComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     pswd: new FormControl('', Validators.required),
     rePswd: new FormControl('', Validators.required),
-    about: new FormControl('')
+    about: new FormControl('', Validators.required)
   });
 
   activeForm: FormGroup = this.signUpUserForm;
@@ -46,11 +44,6 @@ export class SignupComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Save user id in session at first visit
-    if (sessionStorage.getItem("uid") === null) {
-      const userId = self.crypto.randomUUID();
-      sessionStorage.setItem("uid", userId);
-    }
     this.web3storageService.delegateAccessToClientOnStorageSpace();
 
     /*const web3 = new Web3("http://127.0.0.1:8545/");
@@ -84,24 +77,11 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  renameFiles() {
-    // portfolio
-    for (const file of this.portfolio_files) {
-      const newName = sessionStorage.getItem("uid") + '_' + file.name;
-      this.renamed_portfolio_files.push(new File([file], newName, {type: file.type}));
-    }
-    // profile
-    const newName = sessionStorage.getItem("uid") + '_' + this.profile.name;
-    this.renamed_profile = new File([this.profile], newName, {type: this.profile.type});
-  }
-
   resetFileVariables() {
     this.portfolio_urls = [];
     this.portfolio_files = [];
-    this.renamed_portfolio_files = [];
 
     this.profile = new File([], '');
-    this.renamed_profile = new File([], '');
     this.profile_url = '';
   }
 
@@ -111,24 +91,25 @@ export class SignupComponent implements OnInit {
     //  console.log(`https://${fileCid}.ipfs.w3s.link/?filename=${valami}`);
     this.serializedFiles = [];
     // TODO
+    //   - default profilkép beállítása ha nincs megadva
     if (this.isInputValid()) {
-      
+      // TODO: put on blockchain
+      const userId = self.crypto.randomUUID();
+
     }
-    this.renameFiles();
     //console.log(this.portfolio_files);
-    //console.log(this.renamed_portfolio_files);
     //console.log(this.profile);
-    //console.log(this.renamed_profile);
-    for (const file of this.renamed_portfolio_files) {
+    for (const file of this.portfolio_files) {
       const fileCid = await this.web3storageService.uploadFile(file);
       const serializedCid = this.web3storageService.serializeCID(fileCid);
       this.serializedFiles.push(serializedCid);
     }
-    if (this.renamed_profile.name) {
-      const fileCid = await this.web3storageService.uploadFile(this.renamed_profile);
+    if (this.profile.name) {
+      const fileCid = await this.web3storageService.uploadFile(this.profile);
       const serializedCid = this.web3storageService.serializeCID(fileCid);
       this.serializedFiles.push(serializedCid);
     }
+
     this.resetFileVariables();
   }
 
@@ -141,13 +122,24 @@ export class SignupComponent implements OnInit {
   }
 
   isInputValid(): boolean {
-    if (this.activeForm.get('pswd')?.value!.trim() !== this.activeForm.get('rePswd')?.value!.trim()) {
-      this.snackBar.open('A két jelszó nem egyezik!', '', { duration: 3000 });
+    const name = this.activeForm.get('name');
+    const pswd = this.activeForm.get('pswd');
+    const rePswd = this.activeForm.get('rePswd');
+    const email = this.activeForm.get('email');
+    const about = this.activeForm.get('about');
+
+    if (name?.invalid || pswd?.invalid || rePswd?.invalid || email?.value === '' || (about && about.invalid)) {
+      this.snackBar.open('A kötelező mezőket ki kell tölteni!', '', { duration: 3000 });
       return false;
     }
 
-    if (this.activeForm.get('email')?.invalid){
+    if (email?.invalid) {
       this.snackBar.open('Helytelen e-mail cím!', '', { duration: 3000 });
+      return false;
+    }
+
+    if (pswd?.value!.trim() !== rePswd?.value!.trim()) {
+      this.snackBar.open('A két jelszó nem egyezik!', '', { duration: 3000 });
       return false;
     }
 
@@ -157,6 +149,7 @@ export class SignupComponent implements OnInit {
   }
 
   goBack() {
+    // For testing:
     // Delete files from web3storage
     for (const file of this.serializedFiles) {
       const parsedCid = this.web3storageService.parseCID(file);

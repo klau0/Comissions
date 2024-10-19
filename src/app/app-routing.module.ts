@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { authGuard } from './shared/services/auth.guard';
 
 const routes: Routes = [
   {
@@ -11,20 +12,23 @@ const routes: Routes = [
     loadChildren: () => import('./pages/signup/signup.module').then(m => m.SignupModule) 
   },
   {
-    path: 'main', 
-    loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule)
+    path: 'main',
+    loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule),
+    canActivate: [authGuard]
   },
   {
     path: 'account',
-    loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule)
+    loadChildren: () => import('./pages/account/account.module').then(m => m.AccountModule),
+    canActivate: [authGuard]
   },
   {
     path: 'artist-profile/:artistId',
-    loadChildren: () => import('./pages/artist-profile/artist-profile.module').then(m => m.ArtistProfileModule)
+    loadChildren: () => import('./pages/artist-profile/artist-profile.module').then(m => m.ArtistProfileModule),
+    canActivate: [authGuard]
   },
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/main',
     pathMatch: 'full'
   },
   {

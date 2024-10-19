@@ -1,0 +1,17 @@
+<h5 mat-dialog-title class="title">{{data.packageTitle}}</h5>
+<mat-dialog-content>
+    <div id="price">{{data.packagePrice}} Ft</div>
+    <mat-form-field id="requestInput">
+        <textarea matInput rows="10" placeholder="Kérés leírása" [formControl]="request"></textarea>
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="center" class="actions">
+    <button mat-fab extended class="buy-btn" (click)="buyPackage()" type="button">
+        <mat-icon>payment</mat-icon>
+        Vásárlás
+    </button>
+    <button mat-fab extended class="buy-btn cancel-btn" (click)="goBack()" type="button">
+        <mat-icon>cancel</mat-icon>
+        Mégsem
+    </button>
+</mat-dialog-actions>

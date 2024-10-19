@@ -49,6 +49,8 @@ app-package, app-commission, app-order {
 }
 
 .list-item {
+    display: flex;
+    align-items: flex-start;
     width: max-content;
     background-color: #2b2b2b;
     border-radius: 20px;
@@ -57,14 +59,21 @@ app-package, app-commission, app-order {
     margin-bottom: 15px;
 }
 
+#email-icon {
+    padding-right: 10px;
+}
+
 .about {
     width: 45%;
     max-width: 600px;
-    display: flex;
-    align-items: flex-start;
     div {
         white-space: normal;
     }
+}
+
+#about-icon {
+    overflow: unset !important;
+    padding-right: 15px;
 }
 
 .column-flex {
@@ -93,11 +102,6 @@ app-package, app-commission, app-order {
         margin-right: 3px !important;
         transform: scale(0.9);
     }
-}
-
-#about-icon {
-    overflow: unset !important;
-    padding-right: 15px;
 }
 
 #aboutInput {
@@ -138,6 +142,7 @@ app-package, app-commission, app-order {
     img {
         display: block;
         max-width: 300px;
+        border-radius: 10px;
     }
     .shadow {
         display: none;

@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-commission-done-dialog',
@@ -11,7 +12,8 @@ export class CommissionDoneDialogComponent {
 
   constructor (
     public dialogRef: MatDialogRef<CommissionDoneDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { name: string }
+    @Inject(MAT_DIALOG_DATA) public data: { name: string },
+    private snackBar: MatSnackBar
   ) {}
 
   onFilesSelected(event: any) {
@@ -24,6 +26,11 @@ export class CommissionDoneDialogComponent {
     // todo: - küldés megvalósítása
     //       - requests mappingből törölni az adott requestet ?? (kell a megrendelések lekéréséhez is)
     //console.log(this.data.name);
+    if (this.requestedImages.length) {
+
+    } else {
+      this.snackBar.open('Legalább 1 képet válasszon ki!', '', { duration: 3000 });
+    }
   }
   
   goBack() {

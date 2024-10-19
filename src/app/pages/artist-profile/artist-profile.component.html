@@ -1,1 +1,31 @@
-<p>artist-profile works!</p>
+<div class="full-height">
+    <div class="header">
+        <img id="profile_pic" src="../../../assets/hp.jpeg" alt="profile-picture">
+        <div class="name">Nagy Antal</div>
+    </div>
+
+    <mat-tab-group dynamicHeight mat-stretch-tabs="false" mat-align-tabs="center" class="no-border">
+        <mat-tab label="Rólam">
+            <div class="about">
+                <mat-icon id="about-icon">account_circle</mat-icon>
+                <div>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at consectetur odio. Ut tortor ante, pellentesque non convallis ut, vulputate nec metus. Aliquam erat volutpat. Praesent lobortis ligula sit amet ultricies pretium. Integer ac turpis pulvinar, volutpat tellus ornare, lobortis ipsum. Phasellus tincidunt enim id ante euismod pretium. Fusce tincidunt iaculis ultricies. Etiam sollicitudin, massa at viverra posuere, mi mauris cursus nibh, vitae molestie tortor erat in urna.
+                </div>
+            </div>
+        </mat-tab>
+
+        <mat-tab label="Portfólió">
+            <div class="portfolio-flex">
+                <img src="../../../assets/fall.jpg" alt="img">
+                <img src="../../../assets/fall.jpg" alt="img">
+                <img src="../../../assets/fall.jpg" alt="img">
+            </div>
+        </mat-tab>
+
+        <mat-tab label="Csomagok">
+            <div class="cards-flex">
+                <app-artist-package [name]="pName" [price]="pPrice" [desc]="pDesc"></app-artist-package>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

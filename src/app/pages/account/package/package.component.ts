@@ -39,7 +39,7 @@ export class PackageComponent {
       this.editMode = false;
       this.newPackageDone.emit(true);
     } else {
-      this.snackBar.open('Az összes mezőt ki kell tölteni', '', { duration: 3000 });
+      this.snackBar.open('Az összes mezőt ki kell tölteni!', '', { duration: 3000 });
     }
   }
 
