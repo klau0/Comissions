@@ -17,7 +17,7 @@ app-artist-package {
 }
 
 #profile_pic {
-    width: 8vw;
+    width: 120px;
     border-radius: 70px 70px;
 }
 
@@ -36,14 +36,6 @@ app-artist-package {
     padding-left: 10px;
 }
 
-.data {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 0;
-}
-
 .about {
     display: flex;
     align-items: flex-start;
@@ -53,7 +45,7 @@ app-artist-package {
     background-color: #2b2b2b;
     border-radius: 20px;
     padding: 10px;
-    margin: 12px auto;
+    margin: 15px auto 10px;
     div {
         white-space: normal;
     }

@@ -10,7 +10,7 @@
 }
 
 .card {
-    height: 430px;
+    max-height: 430px;
     width: 350px;
     text-align: center;
     margin: 10px 10px;
@@ -29,7 +29,6 @@
 
 .avatar {
     float: left;
-    background-image: url('../../../assets/hp.jpeg');
     background-size: cover;
     min-height: 50px;
     min-width: 50px;

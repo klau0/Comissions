@@ -1,23 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { Web3storageService } from '../../shared/services/web3storage.service';
-import { Web3 } from "web3";
+import { Web3jsService } from '../../shared/services/web3js.service';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent {
   profile_url = '';
   profile: File = new File([], '');
   portfolio_urls: string[] = [];
   portfolio_files: File[] = [];
-  serializedFiles: string[] = [];
+  loading: boolean = false;
 
   signUpUserForm = new FormGroup({
     name: new FormControl('', Validators.required),
@@ -40,29 +40,9 @@ export class SignupComponent implements OnInit {
     private location: Location,
     private snackBar: MatSnackBar, 
     private router: Router,
-    private web3storageService: Web3storageService
+    private web3storageService: Web3storageService,
+    private web3jsService: Web3jsService
   ) {}
-
-  ngOnInit(): void {
-    this.web3storageService.delegateAccessToClientOnStorageSpace();
-
-    /*const web3 = new Web3("http://127.0.0.1:8545/");
-
-    web3.eth
-    .getChainId()
-    .then((result) => {
-      console.log("Chain ID: " + result);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-
-    const json = require('../../../../hardhat/artifacts/contracts/TestContract.sol/TestContract.json');
-    const myContract = new web3.eth.Contract(json.abi, "0x5FbDB2315678afecb367f032d93F642f64180aa3");
-    myContract.methods.message().call().then((msg) => {
-      console.log(msg);
-    });*/
-  }
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
@@ -89,25 +69,39 @@ export class SignupComponent implements OnInit {
     //  <img src="https://CID.ipfs.w3s.link/FÁJLNÉV.KIT"> ha dir
     //  ez is jó: `${fileCid}`, vagy ez: '' + fileCid;
     //  console.log(`https://${fileCid}.ipfs.w3s.link/?filename=${valami}`);
-    this.serializedFiles = [];
-    // TODO
-    //   - default profilkép beállítása ha nincs megadva
-    if (this.isInputValid()) {
-      // TODO: put on blockchain
-      const userId = self.crypto.randomUUID();
+    const name = this.activeForm.controls.name;
+    const pswd = this.activeForm.controls.pswd;
+    const rePswd = this.activeForm.controls.rePswd;
+    const email = this.activeForm.controls.email;
+    const about = this.activeForm.controls.about;
+    const isInputValid = await this.isInputValid(name, pswd, rePswd, email, about);
 
-    }
-    //console.log(this.portfolio_files);
-    //console.log(this.profile);
-    for (const file of this.portfolio_files) {
-      const fileCid = await this.web3storageService.uploadFile(file);
-      const serializedCid = this.web3storageService.serializeCID(fileCid);
-      this.serializedFiles.push(serializedCid);
-    }
-    if (this.profile.name) {
-      const fileCid = await this.web3storageService.uploadFile(this.profile);
-      const serializedCid = this.web3storageService.serializeCID(fileCid);
-      this.serializedFiles.push(serializedCid);
+    if (isInputValid) {
+      this.loading = true;
+      let serializedProfile = '';
+
+      const serializedPortfolioFiles = await this.web3storageService.uploadFiles(this.portfolio_files);
+      if (this.profile.name) {
+        serializedProfile = await this.web3storageService.uploadFile(this.profile);
+      } else {
+        // TODO: átírni backenden !
+        // this.web3storageService.serializeCID(defaultCid);
+      }
+
+      // about only exists in the signUpArtistForm -> an artist wants to sign up
+      if (about) {
+        this.web3jsService.addArtist(name.value, email.value, pswd.value, about.value, serializedProfile, serializedPortfolioFiles).then(() => {
+          this.snackBar.open('Sikeres regisztráció!', '', { duration: 3000 });
+          this.router.navigateByUrl("/login");
+        });
+      } else {
+        this.web3jsService.addUser(name.value, email.value, pswd.value, serializedProfile).then(() => {
+          this.snackBar.open('Sikeres regisztráció!', '', { duration: 3000 });
+          this.router.navigateByUrl("/login");
+        });
+      }
+
+      this.loading = false;
     }
 
     this.resetFileVariables();
@@ -121,40 +115,38 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  isInputValid(): boolean {
-    const name = this.activeForm.get('name');
-    const pswd = this.activeForm.get('pswd');
-    const rePswd = this.activeForm.get('rePswd');
-    const email = this.activeForm.get('email');
-    const about = this.activeForm.get('about');
-
-    if (name?.invalid || pswd?.invalid || rePswd?.invalid || email?.value === '' || (about && about.invalid)) {
+  async isInputValid(
+    name: AbstractControl<any, any>,
+    pswd: AbstractControl<any, any>,
+    rePswd: AbstractControl<any, any>,
+    email: AbstractControl<any, any>,
+    about: AbstractControl<any, any>
+  ): Promise<boolean> {
+    if (name.invalid || pswd.invalid || rePswd.invalid || email.value === '' || (about && about.invalid)) {
       this.snackBar.open('A kötelező mezőket ki kell tölteni!', '', { duration: 3000 });
       return false;
     }
 
-    if (email?.invalid) {
+    if (email.invalid) {
       this.snackBar.open('Helytelen e-mail cím!', '', { duration: 3000 });
       return false;
     }
 
-    if (pswd?.value!.trim() !== rePswd?.value!.trim()) {
-      this.snackBar.open('A két jelszó nem egyezik!', '', { duration: 3000 });
+    const isEmailTaken = await this.web3jsService.isEmailTaken(email.value);
+    if (isEmailTaken) {
+      this.snackBar.open('Az e-mail cím már foglalt!', '', { duration: 3000 });
       return false;
     }
 
-    // TODO: DAO - user with this email exists
+    if (pswd.value.trim() !== rePswd.value.trim()) {
+      this.snackBar.open('A két jelszó nem egyezik!', '', { duration: 3000 });
+      return false;
+    }
 
     return true;
   }
 
   goBack() {
-    // For testing:
-    // Delete files from web3storage
-    for (const file of this.serializedFiles) {
-      const parsedCid = this.web3storageService.parseCID(file);
-      this.web3storageService.removeCID(parsedCid);
-    }
-    //this.location.back();
+    this.location.back();
   }
 }

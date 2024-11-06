@@ -13,7 +13,9 @@ import { toJSON, fromJSON } from 'multiformats/cid';
 export class Web3storageService {
   client: any;
 
-  constructor() {}
+  constructor() {
+    this.delegateAccessToClientOnStorageSpace();
+  }
 
   async delegateAccessToClientOnStorageSpace() {
     // Load client with specific private key
@@ -31,12 +33,23 @@ export class Web3storageService {
     return this.client.uploadDirectory(files);
   }
 
-  uploadFile(file: File) {
-    return this.client.uploadFile(file);
+  async uploadFiles(files: File[]): Promise<string[]> {
+    let serializedFiles: string[] = [];
+    for (const file of files) {
+      const fileCid = await this.client.uploadFile(file);
+      serializedFiles.push(this.serializeCID(fileCid));
+    }
+    return serializedFiles;
   }
 
-  removeCID(cid: Signer.UnknownLink) {
-    this.client.remove(cid, { shards: true });
+  async uploadFile(file: File): Promise<string> {
+    const fileCid = await this.client.uploadFile(file);
+    return this.serializeCID(fileCid);
+  }
+
+  removeCID(serializedCid: string) {
+    const parsedCid = this.parseCID(serializedCid);
+    this.client.remove(parsedCid, { shards: true });
   }
   
   serializeCID(cid: AnyLink) {

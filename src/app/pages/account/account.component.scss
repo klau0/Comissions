@@ -17,8 +17,10 @@ app-package, app-commission, app-order {
 }
 
 #profile_pic {
-    width: 8vw;
-    border-radius: 70px 70px;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .no-border ::ng-deep .mat-mdc-tab-label-container {
@@ -45,7 +47,7 @@ app-package, app-commission, app-order {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 10px 0;
+    margin: 15px 0 10px;
 }
 
 .list-item {
@@ -64,8 +66,8 @@ app-package, app-commission, app-order {
 }
 
 .about {
-    width: 45%;
-    max-width: 600px;
+    width: max-content;
+    max-width: 45%;
     div {
         white-space: normal;
     }
@@ -73,7 +75,7 @@ app-package, app-commission, app-order {
 
 #about-icon {
     overflow: unset !important;
-    padding-right: 15px;
+    padding-right: 10px;
 }
 
 .column-flex {
@@ -152,6 +154,7 @@ app-package, app-commission, app-order {
         box-shadow: inset 0 0 0 100vmax rgba(150, 150, 150, 0.8);
         top: 0;
         left: 0;
+        border-radius: 10px;
         button {
             position: absolute;
             top: 50%;
@@ -160,6 +163,34 @@ app-package, app-commission, app-order {
             color: #e70000;
             background-color: #ffd4d4;
         }
+    }
+    .loading > button{
+        display: none;
+    }
+}
+
+.profile-spinner ::ng-deep circle {
+    stroke: black !important;
+}
+
+.profile-spinner {
+    width: 50% !important;
+    height: 100% !important;
+    margin: 0 auto;
+}
+
+.portfolio-spinner {
+    max-width: 230px !important;
+    margin-left: 5px;
+}
+
+.profile-shadow {
+    border-radius: 50% !important;
+    button {
+        width: 35px;
+        height: 35px;
+        color: #095229 !important;
+        background-color: #7effb4 !important;
     }
 }
 
@@ -183,7 +214,7 @@ app-package, app-commission, app-order {
         width: 40%;
     }
     .about {
-        width: 55%;
+        max-width: 55%;
     }
 }
 
@@ -192,7 +223,7 @@ app-package, app-commission, app-order {
         width: 45%;
     }
     .about {
-        width: 60%;
+        max-width: 60%;
     }
 }
 
@@ -207,7 +238,7 @@ app-package, app-commission, app-order {
         width: 60%;
     }
     .about {
-        width: 70%;
+        max-width: 70%;
     }
 }
 
@@ -233,7 +264,7 @@ app-package, app-commission, app-order {
         width: 80%;
     }
     .about {
-        width: 90%;
+        max-width: 90%;
     }
 }
 

@@ -1,7 +1,16 @@
 <div class="full-height">
     <div class="header">
-        <img id="profile_pic" src="../../../assets/hp.jpeg" alt="profile-picture">
-        <div class="name">Nagy Antal</div>
+        <input type="file" accept="image/*" class="hide" (change)="changeProfilePicture($event, profile_shadow)" #fileUpload>
+        <div class="image" (click)="showOption($event)">
+            <img id="profile_pic" [src]="profileUrl" alt="profile-picture">
+            <div class="shadow profile-shadow" (click)="hideOption($event)" #profile_shadow>
+                <button mat-mini-fab (click)="fileUpload.click()" type="button" [ngClass]="loadingProfile ? 'hide' : ''">
+                    <mat-icon>swap_horiz</mat-icon>
+                </button>
+                <mat-spinner *ngIf="loadingProfile" class="profile-spinner"></mat-spinner>
+            </div>
+        </div>
+        <div class="name">{{ name }}</div>
     </div>
 
     <mat-tab-group dynamicHeight mat-stretch-tabs="false" mat-align-tabs="center" class="no-border">
@@ -9,17 +18,15 @@
             <div class="data">
                 <div class="list-item">
                     <mat-icon id="email-icon">email</mat-icon>
-                    <div>valami&#64;gmail.com</div>
+                    <div>{{ email }}</div>
                 </div>
 
                 <ng-container *ngIf="isArtist">
                     <div class="list-item about">
                         <mat-icon id="about-icon">account_circle</mat-icon>
-                        <div *ngIf="!editModeOnAbout">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at consectetur odio. Ut tortor ante, pellentesque non convallis ut, vulputate nec metus. Aliquam erat volutpat. Praesent lobortis ligula sit amet ultricies pretium. Integer ac turpis pulvinar, volutpat tellus ornare, lobortis ipsum. Phasellus tincidunt enim id ante euismod pretium. Fusce tincidunt iaculis ultricies. Etiam sollicitudin, massa at viverra posuere, mi mauris cursus nibh, vitae molestie tortor erat in urna.
-                        </div>
+                        <div *ngIf="!editModeOnAbout">{{ about }}</div>
                         <mat-form-field [ngClass]="editModeOnAbout ? 'show' : 'hide'" id="aboutInput">
-                            <textarea matInput rows="10" [formControl]="about" placeholder="Rólam"></textarea>
+                            <textarea matInput rows="10" [formControl]="aboutInput" placeholder="Rólam"></textarea>
                         </mat-form-field>
 
                         <div class="column-flex">
@@ -41,46 +48,15 @@
         <ng-container *ngIf="isArtist">
             <mat-tab label="Portfólió">
                 <div class="portfolio-flex">
-                    <div class="image" (click)="showDeleteOption($event)">
-                        <img src="../../../assets/fall.jpg" alt="img">
-                        <div class="shadow" (click)="hideDeleteOption($event)">
-                            <button mat-mini-fab (click)="deletePortfolioImg($event)" type="button">
+                    <div class="image" *ngFor="let image of portfolio | keyvalue" (click)="showOption($event)">
+                        <img [src]="image.value[0]" alt="img">
+                        <div class="shadow" (click)="hideOption($event)">
+                            <button mat-mini-fab (click)="deletePortfolioImg(image.key)" type="button">
                                 <mat-icon>delete</mat-icon>
                             </button>
                         </div>
                     </div>
-                    <div class="image" (click)="showDeleteOption($event)">
-                        <img src="../../../assets/fall.jpg" alt="img">
-                        <div class="shadow" (click)="hideDeleteOption($event)">
-                            <button mat-mini-fab (click)="deletePortfolioImg($event)" type="button">
-                                <mat-icon>delete</mat-icon>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="image" (click)="showDeleteOption($event)">
-                        <img src="../../../assets/fall.jpg" alt="img">
-                        <div class="shadow" (click)="hideDeleteOption($event)">
-                            <button mat-mini-fab (click)="deletePortfolioImg($event)" type="button">
-                                <mat-icon>delete</mat-icon>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="image" (click)="showDeleteOption($event)">
-                        <img src="../../../assets/fall.jpg" alt="img">
-                        <div class="shadow" (click)="hideDeleteOption($event)">
-                            <button mat-mini-fab (click)="deletePortfolioImg($event)" type="button">
-                                <mat-icon>delete</mat-icon>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="image" (click)="showDeleteOption($event)">
-                        <img src="../../../assets/fall.jpg" alt="img">
-                        <div class="shadow" (click)="hideDeleteOption($event)">
-                            <button mat-mini-fab (click)="deletePortfolioImg($event)" type="button">
-                                <mat-icon>delete</mat-icon>
-                            </button>
-                        </div>
-                    </div>
+                    <mat-spinner *ngIf="loadingPortfolio" class="portfolio-spinner"></mat-spinner>
                     <div id="add-img-container">
                         <div>
                             <input multiple type="file" accept="image/*" class="hide" (change)="addToPortfolio($event)" #filesUpload>
@@ -94,10 +70,10 @@
 
             <mat-tab label="Csomagok">
                 <div class="cards-flex">
-                    <app-package [name]="pName" [price]="pPrice" [desc]="pDesc"></app-package>
-                    <app-package [name]="pName" [price]="pPrice" [desc]="pDesc"></app-package>
-                    <app-package [name]="pName" [price]="pPrice" [desc]="pDesc"></app-package>
-                    <app-package [editMode]="true" *ngIf="isNewPackage" (newPackageDone)="hideNewPackage($event)"></app-package>
+                    @for (id of packageIds; track id) {
+                        <app-package [id]="id"></app-package>
+                    }
+                    <app-package [editMode]="true" *ngIf="isNewPackage" (newPackageDone)="addNewPackage($event)" (wentBack)="hideNewPackage($event)"></app-package>
                 </div>
 
                 <div class="new-package">
@@ -110,14 +86,18 @@
 
             <mat-tab label="Megbízások">
                 <div class="cards-flex">
-                    <app-commission></app-commission>
+                    @for (requestInfo of requestedPackagesInfo | keyvalue; track requestInfo.key) {
+                        <app-commission [titleAndPrice]="requestInfo.key" [requestsData]="requestInfo.value" (allRequestsDone)="deleteCommission($event)"></app-commission>
+                    }
                 </div>
             </mat-tab>
         </ng-container>
         
         <mat-tab label="Megrendelések">
             <div class="cards-flex">
-                <app-order [isDone]="false"></app-order>
+                @for (request of ownRequests; track request['id']) {
+                    <app-order [order]="request"></app-order>
+                }
             </div>
         </mat-tab>
     </mat-tab-group>

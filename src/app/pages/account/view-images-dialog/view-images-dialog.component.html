@@ -1,6 +1,6 @@
 <h5 mat-dialog-title class="title">Kért kép<span *ngIf="data.images.length > 1">ek</span></h5>
 <mat-dialog-content class="flex">
-    <img *ngFor="let image of data.images" [src]="image" class="image" alt="requested-image">
+    <img *ngFor="let url of imageUrls" [src]="url" class="image" alt="requested-image">
 </mat-dialog-content>
 <mat-dialog-actions align="center" class="actions">
     <button mat-mini-fab (click)="goBack()" class="back-btn" type="button">

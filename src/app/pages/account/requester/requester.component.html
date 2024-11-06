@@ -1,11 +1,9 @@
 <mat-expansion-panel class="exp-panel">
     <mat-expansion-panel-header>
         <mat-icon class="account-icon">account_circle</mat-icon>
-        <span>Kis Antal</span>
+        <span>{{requestData['name']}}</span>
     </mat-expansion-panel-header>
-    <div>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at consectetur odio. Ut tortor ante, pellentesque non convallis ut, vulputate nec metus. Aliquam erat volutpat. Praesent lobortis ligula sit amet ultricies pretium. Integer ac turpis pulvinar, volutpat tellus ornare, lobortis ipsum. Phasellus tincidunt enim id ante euismod pretium. Fusce tincidunt iaculis ultricies.
-    </div>
+    <div>{{requestData['description']}}</div>
     <button mat-fab extended class="done-btn" (click)="markCommissionAsDone()" type="button">
         <mat-icon>done</mat-icon>
         Elkészült

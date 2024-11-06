@@ -1,10 +1,10 @@
 <mat-card class="card">
     <mat-card-header class="card-header">
-        <mat-card-title *ngIf="!editMode">{{name}}</mat-card-title>
+        <mat-card-title *ngIf="!editMode">{{title}}</mat-card-title>
         <div *ngIf="!editMode" class="price">{{price}} Ft</div>
 
         <mat-form-field [ngClass]="editMode ? 'show' : 'hide'" class="package-name-input">
-            <input matInput type="text" [formControl]="newName" placeholder="Megnevezés">
+            <input matInput type="text" [formControl]="newTitle" placeholder="Megnevezés">
         </mat-form-field>
         <mat-form-field [ngClass]="editMode ? 'show' : 'hide'" class="package-price-input">
             <input matInput type="number" [formControl]="newPrice" placeholder="Ár">

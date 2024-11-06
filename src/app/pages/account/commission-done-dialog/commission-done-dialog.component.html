@@ -12,6 +12,7 @@
             <span>{{requestedImages.length}}</span> kép kiválasztva
         </div>
     </div>
+    <mat-spinner *ngIf="loading" class="spinner"></mat-spinner>
 </mat-dialog-content>
 <mat-dialog-actions align="center">
     <button mat-fab extended class="send-btn" (click)="sendImagesToRequester()" type="button">

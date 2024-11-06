@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CommissionDoneDialogComponent } from '../commission-done-dialog/commission-done-dialog.component';
 
@@ -8,13 +8,24 @@ import { CommissionDoneDialogComponent } from '../commission-done-dialog/commiss
   styleUrl: './requester.component.scss'
 })
 export class RequesterComponent {
+  @Input() requestData: any = {};
   readonly dialog = inject(MatDialog);
+  @Output() commissionCompleted: EventEmitter<number> = new EventEmitter();
 
   markCommissionAsDone() {
-    this.dialog.open(CommissionDoneDialogComponent, {
+    const dialogRef = this.dialog.open(CommissionDoneDialogComponent, {
       backdropClass: 'grey-bg',
       autoFocus : 'dialog',
-      data: { name: 'Kis Antal' }
+      data: {
+        requestId: this.requestData['requestId'],
+        packageId: this.requestData['packageId']
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.commissionCompleted.emit(this.requestData['requestId']);
+      }
     });
   }
 }
