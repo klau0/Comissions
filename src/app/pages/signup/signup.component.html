@@ -1,10 +1,10 @@
+<h1>Regisztráció</h1>
+
 <div class="load" *ngIf="loading">
     <mat-spinner></mat-spinner>
 </div>
 
-<h1>Regisztráció</h1>
-
-<mat-tab-group dynamicHeight mat-stretch-tabs="false" mat-align-tabs="center" (selectedTabChange)="tabChanged($event)" class="no-border">
+<mat-tab-group *ngIf="!loading" dynamicHeight mat-stretch-tabs="false" mat-align-tabs="center" (selectedTabChange)="tabChanged($event)" class="no-border">
     <mat-tab label="Felhasználóknak">
         <div class="center">
             <form [formGroup]="signUpUserForm" (ngSubmit)="onSubmit($event)">
@@ -27,21 +27,18 @@
                 <div class="required">*Kötelező megadni</div>
 
                 <mat-expansion-panel class="expansion-panel">
-                    <mat-expansion-panel-header>
-                        <input type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)" #fileUpload>
+                    <mat-expansion-panel-header>Profilkép</mat-expansion-panel-header>
+
+                    <ng-template matExpansionPanelContent>
                         <div class="file-upload">
-                            <span class="text">Profilkép</span>
+                            <input type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)" #fileUpload>
                             <button mat-mini-fab class="upload_btn mint-bgc" type="button" (click)="fileUpload.click()">
                                 <mat-icon class="black-c">attach_file</mat-icon>
                             </button>
-                            <span class="pic">{{profile.name || "Tallózás"}}</span>
+                            <span class="text">Tallózás</span>
                         </div>
-                    </mat-expansion-panel-header>
-
-                    <ng-template matExpansionPanelContent>
-                        <div class="pics">
-                            <span *ngIf="!profile_url">Nincs még kiválasztva kép</span>
-                            <img *ngIf="profile_url" src="{{profile_url}}">
+                        <div class="profile-pic" *ngIf="profile_url">
+                            <img src="{{profile_url}}">
                         </div>
                     </ng-template>
                 </mat-expansion-panel>
@@ -75,51 +72,43 @@
                 </mat-form-field>
                 <mat-form-field class="last-input">
                     <mat-label>Rólam</mat-label>
-                    <textarea matInput formControlName="about"></textarea>
+                    <textarea matInput formControlName="about" id="about-textarea"></textarea>
                 </mat-form-field>
                 <div class="required">*Kötelező megadni</div>
 
-                <mat-accordion multi>
-                    <mat-expansion-panel id="artist_prof_exp_panel" class="expansion-panel">
-                        <mat-expansion-panel-header>
+                <mat-expansion-panel id="artist_prof_exp_panel" class="expansion-panel">
+                    <mat-expansion-panel-header>Profilkép</mat-expansion-panel-header>
+
+                    <ng-template matExpansionPanelContent>
+                        <div class="file-upload">
                             <input type="file" accept="image/*" class="file-input" (change)="onFileSelected($event)" #fileUpload>
-                            <div class="file-upload">
-                                <span class="text">Profilkép</span>
-                                <button mat-mini-fab class="upload_btn mint-bgc" type="button" (click)="fileUpload.click()">
-                                    <mat-icon class="black-c">attach_file</mat-icon>
-                                </button>
-                                <span class="pic">{{profile.name || "Tallózás"}}</span>
-                            </div>
-                        </mat-expansion-panel-header>
+                            <button mat-mini-fab class="mint-bgc" type="button" (click)="fileUpload.click()">
+                                <mat-icon class="black-c">attach_file</mat-icon>
+                            </button>
+                            <span class="text">Tallózás</span>
+                        </div>
+                        <div class="profile-pic" *ngIf="profile_url">
+                            <img src="{{profile_url}}">
+                        </div>
+                    </ng-template>
+                </mat-expansion-panel>
 
-                        <ng-template matExpansionPanelContent>
-                            <div class="pics">
-                                <span *ngIf="!profile_url">Nincs még kiválasztva kép</span>
-                                <img *ngIf="profile_url" src="{{profile_url}}">
-                            </div>
-                        </ng-template>
-                    </mat-expansion-panel>
+                <mat-expansion-panel class="expansion-panel">
+                    <mat-expansion-panel-header>Portfólió képei</mat-expansion-panel-header>
 
-                    <mat-expansion-panel class="expansion-panel">
-                        <mat-expansion-panel-header>
+                    <ng-template matExpansionPanelContent>
+                        <div class="file-upload">
                             <input multiple type="file" accept="image/*" class="file-input" (change)="onFilesSelected($event)" #filesUpload>
-                            <div class="file-upload">
-                                <span class="text">Portfólió képei</span>
-                                <button mat-mini-fab class="upload_btn mint-bgc" type="button" (click)="filesUpload.click()">
-                                    <mat-icon class="black-c">attach_file</mat-icon>
-                                </button>
-                                <span class="pic">Tallózás</span>
-                            </div>
-                        </mat-expansion-panel-header>
-
-                        <ng-template matExpansionPanelContent>
-                            <div class="pics">
-                                <span *ngIf="portfolio_urls.length === 0">Nincs még kiválasztva kép</span>
-                                <img *ngFor="let url of portfolio_urls" src="{{url}}">
-                            </div>
-                        </ng-template>
-                    </mat-expansion-panel>
-                </mat-accordion>
+                            <button mat-mini-fab class="upload_btn mint-bgc" type="button" (click)="filesUpload.click()">
+                                <mat-icon class="black-c">attach_file</mat-icon>
+                            </button>
+                            <span class="text">Tallózás</span>
+                        </div>
+                        <div class="pics" *ngIf="portfolio_urls.length > 0">
+                            <img *ngFor="let url of portfolio_urls" src="{{url}}">
+                        </div>
+                    </ng-template>
+                </mat-expansion-panel>
 
                 <div class="buttons">
                     <button mat-raised-button class="lime-bgc black-c" type="submit">Regisztráció</button>

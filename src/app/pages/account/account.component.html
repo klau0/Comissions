@@ -18,15 +18,15 @@
             <div class="data">
                 <div class="list-item">
                     <mat-icon id="email-icon">email</mat-icon>
-                    <div>{{ email }}</div>
+                    <div id="email-text">{{ email }}</div>
                 </div>
 
                 <ng-container *ngIf="isArtist">
-                    <div class="list-item about">
+                    <div class="list-item about" [ngClass]="editModeOnAbout ? 'expand' : ''">
                         <mat-icon id="about-icon">account_circle</mat-icon>
-                        <div *ngIf="!editModeOnAbout">{{ about }}</div>
-                        <mat-form-field [ngClass]="editModeOnAbout ? 'show' : 'hide'" id="aboutInput">
-                            <textarea matInput rows="10" [formControl]="aboutInput" placeholder="Rólam"></textarea>
+                        <div *ngIf="!editModeOnAbout" id="about-text">{{ about }}</div>
+                        <mat-form-field [ngClass]="editModeOnAbout ? 'show' : 'hide'">
+                            <textarea matInput rows="7" [formControl]="aboutInput" placeholder="Rólam" id="aboutInput"></textarea>
                         </mat-form-field>
 
                         <div class="column-flex">
@@ -56,8 +56,25 @@
                             </button>
                         </div>
                     </div>
+                    @if (portfolio.size === 0) {
+                        <div *ngIf="!loadingPortfolio" class="no-result">
+                            <mat-icon>history</mat-icon>
+                            <span>Nincs még kép feltöltve</span>
+                        </div>
+                    } @else {
+                        <div *ngIf="!loadingPortfolio" id="add-img-container">
+                            <div>
+                                <input multiple type="file" accept="image/*" class="hide" (change)="addToPortfolio($event)" #filesUpload>
+                                <button mat-mini-fab (click)="filesUpload.click()" class="greenBtn" type="button">
+                                    <mat-icon>add_to_photos</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    }
                     <mat-spinner *ngIf="loadingPortfolio" class="portfolio-spinner"></mat-spinner>
-                    <div id="add-img-container">
+                </div>
+                @if (portfolio.size === 0) {
+                    <div *ngIf="!loadingPortfolio" id="add-img-container">
                         <div>
                             <input multiple type="file" accept="image/*" class="hide" (change)="addToPortfolio($event)" #filesUpload>
                             <button mat-mini-fab (click)="filesUpload.click()" class="greenBtn" type="button">
@@ -65,7 +82,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                }
             </mat-tab>
 
             <mat-tab label="Csomagok">
@@ -73,21 +90,34 @@
                     @for (id of packageIds; track id) {
                         <app-package [id]="id"></app-package>
                     }
-                    <app-package [editMode]="true" *ngIf="isNewPackage" (newPackageDone)="addNewPackage($event)" (wentBack)="hideNewPackage($event)"></app-package>
+                    @if (packageIds.length === 0 && !isNewPackage) {
+                        <div class="no-result">
+                            <mat-icon>history</mat-icon>
+                            <span>Nincs még csomag</span>
+                        </div>
+                    }
                 </div>
-
-                <div class="new-package">
-                    <button mat-fab extended class="mint-bgc black-c add-package-btn" (click)="showNewPackage()">
-                        <mat-icon>add</mat-icon>
-                        Új felvétele
-                    </button>
-                </div>
+                <app-package [editMode]="true" *ngIf="isNewPackage" (newPackageDone)="addNewPackage($event)" (wentBack)="hideNewPackage($event)" class="center"></app-package>
+                @if (!isNewPackage) {
+                    <div class="new-package">
+                        <button mat-fab extended class="mint-bgc black-c add-package-btn" (click)="showNewPackage()">
+                            <mat-icon>add</mat-icon>
+                            Új felvétele
+                        </button>
+                    </div>
+                }
             </mat-tab>
 
             <mat-tab label="Megbízások">
                 <div class="cards-flex">
                     @for (requestInfo of requestedPackagesInfo | keyvalue; track requestInfo.key) {
                         <app-commission [titleAndPrice]="requestInfo.key" [requestsData]="requestInfo.value" (allRequestsDone)="deleteCommission($event)"></app-commission>
+                    }
+                    @if (requestedPackagesInfo.size === 0) {
+                        <div class="no-result">
+                            <mat-icon>history</mat-icon>
+                            <span>Nem érkezett megbízás</span>
+                        </div>
                     }
                 </div>
             </mat-tab>
@@ -97,6 +127,12 @@
             <div class="cards-flex">
                 @for (request of ownRequests; track request['id']) {
                     <app-order [order]="request"></app-order>
+                }
+                @if (ownRequests.length === 0) {
+                    <div class="no-result">
+                        <mat-icon>history</mat-icon>
+                        <span>Nincs megrendelés</span>
+                    </div>
                 }
             </div>
         </mat-tab>

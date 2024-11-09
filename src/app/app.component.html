@@ -6,18 +6,16 @@
 
   <mat-sidenav-content>
     <mat-toolbar class="green-bgc">
-      <div fxHide.gt-xs>
-        <button mat-icon-button (click)="onToggleSidenav(sidenav)">
-          <mat-icon id="menu-icon">menu</mat-icon>
-        </button>
-      </div>
+      <button mat-icon-button (click)="onToggleSidenav(sidenav)" id="hamburger-menu">
+        <mat-icon class="black-c">menu</mat-icon>
+      </button>
       <div id="cim">Comissions</div>
-      <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+      <div class="menu-flex">
         <div *ngIf="page === 'main'" class="search">
           <i class="fa fa-search icon"></i>
           <input matInput id="keres" placeholder="Keresés" type="text" name="search" size="25">
         </div>
-        <ul fxLayout fxLayoutGap="10px" id="navigation-items">
+        <ul id="navigation-items">
           <li *ngIf="loggedInUser"><div><a routerLink="/main" [ngClass]="page === 'main' ? 'active' : ''">Művészek</a></div></li>
           <li *ngIf="!(loggedInUser)"><div><a routerLink="/login" [ngClass]="page === 'login' ? 'active' : ''">Bejelentkezés</a></div></li>
           <li *ngIf="loggedInUser"><div><a routerLink="/account" [ngClass]="page === 'account' ? 'active' : ''">Fiók</a></div></li>

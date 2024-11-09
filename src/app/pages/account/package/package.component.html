@@ -14,7 +14,7 @@
     <mat-card-content>
         <p class="desc" *ngIf="!editMode">{{desc}}</p>
         <mat-form-field [ngClass]="editMode ? 'show' : 'hide'" class="textarea-input">
-            <textarea matInput rows="13" [formControl]="newDesc" placeholder="Leírás"></textarea>
+            <textarea matInput rows="10" [formControl]="newDesc" placeholder="Leírás"></textarea>
         </mat-form-field>
     </mat-card-content>
 

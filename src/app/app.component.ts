@@ -30,6 +30,10 @@ export class AppComponent implements OnInit {
         }
       }
     });
+
+    if (sessionStorage.getItem('uid')) {
+      this.loggedInUser = true;
+    }
   }
 
   onClose(event: boolean, sidenav: MatSidenav) {

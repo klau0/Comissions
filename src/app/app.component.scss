@@ -2,6 +2,20 @@
     border-radius: unset;
 }
 
+.menu-flex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    position: absolute;
+    right: 10px;
+}
+
+#hamburger-menu {
+    display: none;
+}
+
 a {
     text-decoration: none;
     color: black;
@@ -37,14 +51,14 @@ a {
             background: #8da83b;
         }
         &::before {
-            top: -4px;
-            bottom: -4px;
+            top: -6px;
+            bottom: -6px;
             left: 5px;
             right: 5px;
         }
-        &::after{
-            left: -4px;
-            right: -4px;
+        &::after {
+            left: -6px;
+            right: -6px;
             top: 5px;
             bottom: 5px;
         }
@@ -100,6 +114,11 @@ i {
     }
 }
 
-#menu-icon {
-    color: black;
+@media only screen and (max-width: 800px) {
+    #hamburger-menu {
+        display: block;
+    }
+    .menu-flex {
+        display: none
+    }
 }

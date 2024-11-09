@@ -13,12 +13,14 @@
 
 app-artist-package {
     width: 30%;
-    max-width: 600px;
+    max-width: 500px;
 }
 
 #profile_pic {
     width: 120px;
-    border-radius: 70px 70px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .header {
@@ -39,9 +41,9 @@ app-artist-package {
 .about {
     display: flex;
     align-items: flex-start;
-    width: 45%;
+    max-width: 35%;
+    width: max-content;
     height: max-content !important;
-    max-width: 600px;
     background-color: #2b2b2b;
     border-radius: 20px;
     padding: 10px;
@@ -53,7 +55,11 @@ app-artist-package {
 
 #about-icon {
     overflow: unset !important;
-    padding-right: 15px;
+    padding-right: 10px;
+}
+
+#about-text {
+    padding-right: 3px;
 }
 
 .cards-flex {
@@ -62,6 +68,9 @@ app-artist-package {
     align-items: center;
     flex-wrap: wrap;
     margin: 10px;
+    .no-result {
+        margin-top: 5px;
+    }
 }
 
 .portfolio-flex {
@@ -78,6 +87,17 @@ app-artist-package {
     }
 }
 
+.no-result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    mat-icon {
+        margin-right: 3px !important;
+        transform: scale(0.9);
+    }
+}
+
 @media only screen and (max-width: 1350px) {
     app-artist-package {
         width: 35%;
@@ -89,7 +109,7 @@ app-artist-package {
         width: 40%;
     }
     .about {
-        width: 55%;
+        max-width: 45%;
     }
 }
 
@@ -98,7 +118,7 @@ app-artist-package {
         width: 45%;
     }
     .about {
-        width: 60%;
+        max-width: 50%;
     }
 }
 
@@ -113,7 +133,7 @@ app-artist-package {
         width: 60%;
     }
     .about {
-        width: 70%;
+        max-width: 60%;
     }
 }
 
@@ -128,7 +148,7 @@ app-artist-package {
         width: 80%;
     }
     .about {
-        width: 90%;
+        max-width: 80%;
     }
 }
 

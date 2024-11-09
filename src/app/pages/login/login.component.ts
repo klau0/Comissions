@@ -21,7 +21,6 @@ export class LoginComponent {
   ){}
 
   login() {
-    // this.web3jsService.getArtistsLenght();
     if (this.isInputValid()) {
       this.loading = true;
       this.web3jsService.login(this.email.value!, this.password.value!).then((result) => {
@@ -31,12 +30,13 @@ export class LoginComponent {
         } else {
           const id = (Number(result[0])).toString();
           sessionStorage.setItem("uid", id);
-          sessionStorage.setItem("isArtist", result[1].toString());
+          sessionStorage.setItem("isArtist", result[1] ? "1" : "0");
 
           console.log('id: ' + id, 'isArtist: ' + result[1].toString());
 
-          this.loading = false;
-          this.router.navigateByUrl('/main');
+          this.router.navigateByUrl('/main').then(() => {
+            this.loading = false;
+          });
         }
       });
     }

@@ -9,7 +9,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MenuComponent } from './shared/menu/menu.component';
 
 @NgModule({
@@ -26,8 +25,7 @@ import { MenuComponent } from './shared/menu/menu.component';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatListModule,
-    FlexLayoutModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

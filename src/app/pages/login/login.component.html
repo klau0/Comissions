@@ -1,11 +1,12 @@
 <div class="full-height">
+
+    <h1>Bejelentkezés</h1>
+
     <div class="load center" *ngIf="loading">
         <mat-spinner></mat-spinner>
     </div>
     
-    <h1>Bejelentkezés</h1>
-    
-    <div class="container">
+    <div *ngIf="!loading" class="container">
         <form>
             <mat-form-field>
                 <mat-label>Email</mat-label>

@@ -40,9 +40,9 @@ export class AccountComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.isArtist = Boolean(sessionStorage.getItem("isArtist"));
+    this.isArtist = sessionStorage.getItem("isArtist") === "1";
     this.userId = Number(sessionStorage.getItem("uid"));
-
+    
     if (this.isArtist) {
       this.web3jsService.getArtistAccountInfo(this.userId).then((result) => {
         this.name = result[0];

@@ -4,13 +4,19 @@
     padding: 10px 0;
 }
 
+.cards-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .profile-link {
     text-decoration: none !important;
     color: #e2e3de !important;
 }
 
 .card {
-    max-height: 430px;
     width: 350px;
     text-align: center;
     margin: 10px 10px;
@@ -23,8 +29,7 @@
 }
 
 .header {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 5px auto 0;
 }
 
 .avatar {
@@ -40,19 +45,23 @@ mat-card-title {
     padding-left: 6px;
 }
 
-mat-grid-list {
-    height: 260px;
-    width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-mat-grid-tile img {
-    display: block;
-    padding: 5px 5px, 0, 5px;
-    max-height: 125px;
-    margin: auto;
-    border-radius: 5px;
+.portfolio-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    .img-wrapper {
+        width: 149px;
+        height: 149px;
+        padding: 5px;
+        box-sizing: border-box;
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+    }
 }
 
 .artist-about {
@@ -61,4 +70,5 @@ mat-grid-tile img {
     -webkit-line-clamp: 3;
     line-clamp: 3;
     -webkit-box-orient: vertical;
+    margin-top: 10px;
 }

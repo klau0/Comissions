@@ -48,13 +48,15 @@ export class SignupComponent {
     const file: File = event.target.files[0];
     this.profile = file;
     this.profile_url = URL.createObjectURL(file);
+    event.target.value = null;
   }
 
   onFilesSelected(event: any) {
-    for (let file of event.target.files){
+    for (let file of event.target.files) {
       this.portfolio_files.push(file);
       this.portfolio_urls.push(URL.createObjectURL(file));
     }
+    event.target.value = null;
   }
 
   resetFileVariables() {
@@ -90,17 +92,13 @@ export class SignupComponent {
 
       // about only exists in the signUpArtistForm -> an artist wants to sign up
       if (about) {
-        this.web3jsService.addArtist(name.value, email.value, pswd.value, about.value, serializedProfile, serializedPortfolioFiles).then(() => {
-          this.snackBar.open('Sikeres regisztráció!', '', { duration: 3000 });
-          this.router.navigateByUrl("/login");
-        });
+        await this.web3jsService.addArtist(name.value, email.value, pswd.value, about.value, serializedProfile, serializedPortfolioFiles);
       } else {
-        this.web3jsService.addUser(name.value, email.value, pswd.value, serializedProfile).then(() => {
-          this.snackBar.open('Sikeres regisztráció!', '', { duration: 3000 });
-          this.router.navigateByUrl("/login");
-        });
+        await this.web3jsService.addUser(name.value, email.value, pswd.value, serializedProfile);
       }
 
+      this.snackBar.open('Sikeres regisztráció!', '', { duration: 3000 });
+      await this.router.navigateByUrl("/login");
       this.loading = false;
     }
 
@@ -113,6 +111,8 @@ export class SignupComponent {
     } else {
       this.activeForm = this.signUpUserForm;
     }
+    this.resetFileVariables();
+    this.activeForm.reset();
   }
 
   async isInputValid(

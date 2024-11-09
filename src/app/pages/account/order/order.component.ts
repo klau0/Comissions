@@ -16,7 +16,7 @@ export class OrderComponent {
 
   openImageViewDialog() {
     const userId = Number(sessionStorage.getItem("uid"));
-    const isArtist = Boolean(sessionStorage.getItem("isArtist"));
+    const isArtist = sessionStorage.getItem("isArtist") === "1";
 
     this.web3jsService.getRequestedImages(userId, this.order['id'], isArtist).then((result) => {
       this.dialog.open(ViewImagesDialogComponent, {

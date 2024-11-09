@@ -38,7 +38,7 @@ export class MainComponent implements OnInit {
   async setArtistCards() {
     const artistsLenght = await this.web3jsService.getArtistsLenght();
     for (let i = 0; i < artistsLenght; i++) {
-      if (Number(sessionStorage.getItem("uid")) === i && Boolean(sessionStorage.getItem("isArtist"))) {
+      if (Number(sessionStorage.getItem("uid")) === i && sessionStorage.getItem("isArtist") === "1") {
         continue;
       }
 
