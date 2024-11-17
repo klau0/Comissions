@@ -76,6 +76,24 @@
     background-color: #005446;
 }
 
+.not-available-flex {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    background-color: #828282;
+    color: black;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 10px 5px;
+    font-weight: 500;
+    margin-top: 15px;
+    mat-icon {
+        margin-right: 3px;
+        transform: scale(0.8);
+    }
+}
+
 @media only screen and (max-width: 1190px) {
     .card-header {
         flex-wrap: wrap;

@@ -66,7 +66,6 @@ export class AccountComponent implements OnInit {
           this.web3jsService.isPackageDeleted(this.userId, i).then((isDeleted) => {
             if (!isDeleted) {
               this.packageIds.push(i);
-              // még nem fog működni
               this.web3jsService.getPackageRequestedNumber(this.userId, i).then((num) => {
                 if (num > 0) {
                   this.web3jsService.getRequestedPackageInfo(this.userId, i, num).then((result) => {
@@ -87,7 +86,6 @@ export class AccountComponent implements OnInit {
                         this.requestedPackagesInfo.set(key, [requestInfo]);
                       }
                     }
-                    console.log(this.requestedPackagesInfo);
                   });
                 }
               });
@@ -136,12 +134,10 @@ export class AccountComponent implements OnInit {
     const newImg = event.target.files[0];
 
     if (!this.defaultProfiles.includes(this.serializedProfileCid)) {
-      console.log("removed prev profile");
       this.web3storageService.removeCID(this.serializedProfileCid);
     }
 
     this.web3storageService.uploadFile(newImg).then((serializedProfile) => {
-      console.log(serializedProfile);
       this.updateProfile(serializedProfile);
       this.web3jsService.changeProfilePicture(this.userId, serializedProfile, this.isArtist);
       this.loadingProfile = false;
@@ -186,6 +182,10 @@ export class AccountComponent implements OnInit {
     this.web3storageService.removeCID(this.portfolio.get(imageId)![1]);
     this.web3jsService.deletePortfolioImage(this.userId, imageId);
     this.portfolio.delete(imageId);
+
+    if (this.portfolio.size === 0) {
+      this.web3jsService.resetPortfolio(this.userId);
+    }
   }
 
   async addToPortfolio(event: any) {
@@ -216,8 +216,16 @@ export class AccountComponent implements OnInit {
     }
   }
 
+  deletePackage(event: number) {
+    const index = this.packageIds.indexOf(event);
+    this.packageIds.splice(index, 1);
+
+    if (this.packageIds.length === 0) {
+      this.web3jsService.resetPackageNumber(this.userId);
+    }
+  }
+
   deleteCommission(event: string) {
     console.log(this.requestedPackagesInfo.delete(event) ? "succesfully deleted commission" : 'ERROR: no such key in requestedPackagesInfo');
   }
-
 }

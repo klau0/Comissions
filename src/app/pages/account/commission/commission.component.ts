@@ -15,15 +15,16 @@ export class CommissionComponent implements OnInit {
   @Output() allRequestsDone: EventEmitter<string> = new EventEmitter();
 
   ngOnInit(): void {
-    const titleAndPriceSplit = this.titleAndPrice.split(' ');
-    this.title = titleAndPriceSplit[0];
-    this.price = Number(titleAndPriceSplit[1]);
     this.requestsNumber = this.requestsData.length;
-    this.totalIncome = this.price * this.requestsNumber;
+    const price = this.titleAndPrice.match(/ \d+$/);
+    if (price) {
+      this.price = Number(price[0]);
+      this.title = this.titleAndPrice.substring(0, this.titleAndPrice.indexOf(price[0]));
+      this.totalIncome = this.price * this.requestsNumber;
+    }
   }
 
   markAsDone(event: number) {
-    console.log(event);
     for (let i = 0; i < this.requestsNumber; i++) {
       if (this.requestsData[i]['requestId'] === event) {
         console.log(this.requestsData.splice(i, 1));

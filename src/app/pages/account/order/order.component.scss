@@ -63,17 +63,17 @@
     color: black;
     box-sizing: border-box;
     border-radius: 10px;
-    padding: 10px 5px;
+    padding: 14px 5px;
     font-weight: 500;
     mat-icon {
         margin-right: 3px;
-        transform: scale(1);
     }
 }
 
 .done-state {
     background-color: #33613b;
     color: white;
+    padding: 3px 7px 3px 5px;
 }
 
 .view-images-btn {

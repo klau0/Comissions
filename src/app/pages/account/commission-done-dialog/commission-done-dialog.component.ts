@@ -39,6 +39,20 @@ export class CommissionDoneDialogComponent {
         this.web3jsService.completeRequest(artistId, this.data.packageId, this.data.requestId, serializedFiles).then(() => {
           this.loading = false;
           this.dialogRef.close(true);
+
+          this.web3jsService.getPackageRequestedNumber(artistId, this.data.packageId).then((amountOfRequests) => {
+            // if there are no more requests on the package
+            if (amountOfRequests === 0) {
+              this.web3jsService.isPackageMarkedAsDeleted(artistId, this.data.packageId).then((isMarkedDeleted) => {
+                // if it was marked deleted, we can actually delete it now
+                if (isMarkedDeleted) {
+                  this.web3jsService.deletePackage(artistId, this.data.packageId);
+                } else {
+                  this.web3jsService.resetPackageRequestNumber(artistId, this.data.packageId);
+                }
+              });
+            }
+          });
         });
       });
     } else {
@@ -50,5 +64,4 @@ export class CommissionDoneDialogComponent {
     this.dialogRef.close(false);
     this.requestedImages = [];
   }
-
 }

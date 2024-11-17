@@ -11,9 +11,10 @@
       </button>
       <div id="cim">Comissions</div>
       <div class="menu-flex">
-        <div *ngIf="page === 'main'" class="search">
+        <div *ngIf="showSearchbar" class="search">
           <i class="fa fa-search icon"></i>
           <input matInput id="keres" placeholder="Keresés" type="text" name="search" size="25">
+          <mat-icon id="clear-search">clear</mat-icon>
         </div>
         <ul id="navigation-items">
           <li *ngIf="loggedInUser"><div><a routerLink="/main" [ngClass]="page === 'main' ? 'active' : ''">Művészek</a></div></li>

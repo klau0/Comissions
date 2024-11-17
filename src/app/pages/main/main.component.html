@@ -1,4 +1,12 @@
 <div class="full-height dark-bgc">
+    <div *ngIf="noResult" class="center-flex">
+        <mat-icon>find_in_page</mat-icon>
+        <span>Nincs találat</span>
+    </div>
+    <div *ngIf="noArtists" class="center-flex">
+        <mat-icon>people</mat-icon>
+        <span>Nincs regisztrált művész</span>
+    </div>
     <div class="cards-flex">
         <a routerLink="/artist-profile/{{artist.key}}" class="profile-link" *ngFor="let artist of artists | keyvalue">
             <mat-card class="card">

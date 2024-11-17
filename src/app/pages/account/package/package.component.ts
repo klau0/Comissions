@@ -1,7 +1,9 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Web3jsService } from '../../../shared/services/web3js.service';
+import { PackageDeleteDialogComponent } from '../package-delete-dialog/package-delete-dialog.component';
 
 @Component({
   selector: 'app-package',
@@ -20,6 +22,9 @@ export class PackageComponent implements OnInit {
   @Input() editMode = false;
   @Output() newPackageDone: EventEmitter<number> = new EventEmitter();
   @Output() wentBack: EventEmitter<boolean> = new EventEmitter();
+  @Output() packageDeleted: EventEmitter<number> = new EventEmitter();
+  readonly dialog = inject(MatDialog);
+  isMarkedDeleted = false;
 
   constructor(
     private snackBar: MatSnackBar,
@@ -33,6 +38,7 @@ export class PackageComponent implements OnInit {
         this.title = result[0];
         this.price = result[1];
         this.desc = result[2];
+        this.isMarkedDeleted = result[3];
       });
     }
   }
@@ -75,9 +81,26 @@ export class PackageComponent implements OnInit {
     }
   }
 
-  deletePackage() {
-    // TODO
-    // this.web3jsService.getPackageRequestedNumber(this.artistId, this.id);
+  async deletePackage() {
+    const amountOfRequests = await this.web3jsService.getPackageRequestedNumber(this.artistId, this.id);
+
+    if (amountOfRequests === 0) {
+      await this.web3jsService.deletePackage(this.artistId, this.id);
+      this.packageDeleted.emit(this.id);
+    } else {
+      const dialogRef = this.dialog.open(PackageDeleteDialogComponent, {
+        backdropClass: 'grey-bg',
+        autoFocus : 'dialog',
+        role: 'alertdialog'
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.web3jsService.markPackageAsDeleted(this.artistId, this.id);
+          this.isMarkedDeleted = true;
+        }
+      });
+    }
   }
 
   goBack() {

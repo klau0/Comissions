@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Web3jsService } from '../../shared/services/web3js.service';
 import { Web3storageService } from '../../shared/services/web3storage.service';
 
@@ -11,6 +10,8 @@ import { Web3storageService } from '../../shared/services/web3storage.service';
 export class MainComponent implements OnInit {
   artists = new Map<number, string[]>();
   portfolios = new Map<number, string[]>();
+  noResult = false;
+  noArtists = false;
 
   constructor(
     private web3jsService: Web3jsService,
@@ -18,24 +19,28 @@ export class MainComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // it's in app.component.html
-    let kereses = document.getElementById("keres");
-    kereses?.addEventListener('input', function(){
-      let input = this as HTMLInputElement;
-      
-      if (input.value.length <= 25){
-        input.size = 25;
-      } else if (input.value.length < 60){
-        input.size = input.value.length;
-      } else {
-        input.size = 60;
+    const search = document.getElementById("keres");
+    search?.addEventListener('keyup', (event) => {
+      if (event.key === "Enter") {
+        let input = event.target as HTMLInputElement;
+        this.setArtistCards(input.value);
       }
+    });
+    const clearSearch = document.getElementById("clear-search");
+    clearSearch?.addEventListener('click', () => {
+      (document.getElementById("keres") as HTMLInputElement).value = "";
+      this.setArtistCards();
     });
 
     this.setArtistCards();
   }
 
-  async setArtistCards() {
+  async setArtistCards(search = "") {
+    this.artists.clear();
+    this.portfolios.clear();
+    this.noResult = false;
+    this.noArtists = false;
+
     const artistsLenght = await this.web3jsService.getArtistsLenght();
     for (let i = 0; i < artistsLenght; i++) {
       if (Number(sessionStorage.getItem("uid")) === i && sessionStorage.getItem("isArtist") === "1") {
@@ -43,6 +48,12 @@ export class MainComponent implements OnInit {
       }
 
       let artistAccountInfo = await this.web3jsService.getArtistAccountInfo(i);
+      const searchWord = search.trim().toLowerCase();
+      const name = String(artistAccountInfo[0]).trim().toLowerCase();
+      if (searchWord && !name.includes(searchWord)) {
+        continue;
+      }
+
       // If it's the default profile
       if (!String(artistAccountInfo[3]).startsWith("{")) {
         artistAccountInfo[3] = `url('https://${artistAccountInfo[3]}.ipfs.w3s.link')`;
@@ -62,6 +73,14 @@ export class MainComponent implements OnInit {
         portfolioUrls.push(`https://${parsedCid}.ipfs.w3s.link`);
       }
       this.portfolios.set(i, portfolioUrls);
+    }
+
+    if (this.artists.size === 0) {
+      if (search) {
+        this.noResult = true;
+      } else {
+        this.noArtists = true;
+      }
     }
   }
 }

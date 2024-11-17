@@ -19,7 +19,7 @@ export class MenuComponent {
   }
 
   selected(s: string): boolean {
-    if (this.currentPage.includes(s)){
+    if (this.currentPage === s) {
       return true;
     } return false;
   }

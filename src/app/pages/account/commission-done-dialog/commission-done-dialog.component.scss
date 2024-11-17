@@ -44,3 +44,16 @@
 .hide {
     display: none;
 }
+
+.no-actions {
+    min-height: unset;
+    button {
+        display: none;
+    }
+}
+
+.spinner {
+    width: max-content;
+    margin: 0 auto;
+    display: block;
+}

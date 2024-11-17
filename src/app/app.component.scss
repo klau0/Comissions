@@ -89,10 +89,10 @@ mat-sidenav {
     border: none;
     border-radius: 20px;
     box-sizing: content-box;
-    padding: 10px 0 10px 35px;
+    padding: 10px 35px;
+    font-size: 16px;
 }
 
-/* Chrome, Safari, Edge, Opera */
 .db::-webkit-outer-spin-button,
 .db::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -104,21 +104,44 @@ i {
     min-width: 40px;
 }
 
+#clear-search {
+    position: absolute;
+    padding: 7px 0 5px 10px;
+    margin-right: 5px;
+    transform: translateX(-42px);
+    color: #717171;
+    cursor: pointer;
+}
+
 .search {
     width: fit-content;
-    padding-right: 20px;
-    margin-top: 5px;
+    padding-right: 10px;
     input:focus {
         outline: none;
         box-shadow: 0 0 5pt 0.5pt black;
     }
+    i {
+        font-size: 20px;
+    }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 870px) {
     #hamburger-menu {
         display: block;
     }
-    .menu-flex {
+    #navigation-items {
         display: none
+    }
+}
+
+@media only screen and (max-width: 570px) {
+    #keres {
+        width: 150px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .menu-flex {
+        display: none;
     }
 }

@@ -6,12 +6,20 @@
 
     <mat-card-content>
         <p class="desc">{{desc}}</p>
+        @if (isNotAvailable) {
+            <div class="not-available-flex">
+                <mat-icon>info</mat-icon>
+                Nem elérhető
+            </div>
+        }
     </mat-card-content>
 
-    <mat-card-actions class="request">
-        <button mat-fab extended class="request-btn mint-bgc black-c" (click)="openRequestDialog()" type="button">
-            <mat-icon>shopping_cart</mat-icon>
-            Megrendelés
-        </button>
-    </mat-card-actions>
+    @if (!isNotAvailable) {
+        <mat-card-actions class="request">
+            <button mat-fab extended class="request-btn mint-bgc black-c" (click)="openRequestDialog()" type="button">
+                <mat-icon>shopping_cart</mat-icon>
+                Megrendelés
+            </button>
+        </mat-card-actions>
+    }
 </mat-card>

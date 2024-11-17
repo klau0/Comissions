@@ -21,8 +21,6 @@ export class ArtistProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.artistId);
-    
     this.web3jsService.getArtistAccountInfo(this.artistId).then((result) => {
       this.name = result[0];
       this.about = result[2];
@@ -54,5 +52,10 @@ export class ArtistProfileComponent implements OnInit {
         });
       }
     });
+  }
+
+  removePackage(event: number) {
+    const index = this.packageIds.indexOf(event);
+    this.packageIds.splice(index, 1);
   }
 }

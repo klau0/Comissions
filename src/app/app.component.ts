@@ -14,26 +14,32 @@ export class AppComponent implements OnInit {
   page = '';
   routes: Array<string> = [];
   loggedInUser = false;
+  showSearchbar = false;
 
   constructor(private router: Router) {}
 
   ngOnInit() {
     this.routes = this.router.config.map(conf => conf.path) as string[];
 
-    this.router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe((evts: any) => {
-      const currentPage = (evts.urlAfterRedirects as string).split('/')[1] as string;
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((evts: any) => {
+      let currentPage = (evts.urlAfterRedirects as string).split('/')[1];
+      this.showSearchbar = false;
+
+      if (currentPage === 'artist-profile') {
+        currentPage = 'main'
+      } else if (currentPage === 'main') {
+        this.showSearchbar = true;
+      }
+
       if (this.routes.includes(currentPage)) {
         this.page = currentPage;
-
         if (sessionStorage.getItem('uid')) {
           this.loggedInUser = true;
         }
       }
     });
-
-    if (sessionStorage.getItem('uid')) {
-      this.loggedInUser = true;
-    }
   }
 
   onClose(event: boolean, sidenav: MatSidenav) {

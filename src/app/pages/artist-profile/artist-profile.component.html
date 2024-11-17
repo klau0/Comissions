@@ -27,7 +27,7 @@
         <mat-tab label="Csomagok">
             <div class="cards-flex">
                 @for (id of packageIds; track id) {
-                    <app-artist-package [id]="id" [artistId]="artistId"></app-artist-package>
+                    <app-artist-package [id]="id" [artistId]="artistId" (packageDeleted)="removePackage($event)"></app-artist-package>
                 }
                 @if (packageIds.length === 0) {
                     <div class="no-result">

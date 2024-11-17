@@ -8,6 +8,7 @@ import { RequesterComponent } from './requester/requester.component';
 import { OrderComponent } from './order/order.component';
 import { CommissionDoneDialogComponent } from './commission-done-dialog/commission-done-dialog.component';
 import { ViewImagesDialogComponent } from './view-images-dialog/view-images-dialog.component';
+import { PackageDeleteDialogComponent } from './package-delete-dialog/package-delete-dialog.component';
 
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
@@ -31,7 +32,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     RequesterComponent,
     OrderComponent,
     CommissionDoneDialogComponent,
-    ViewImagesDialogComponent
+    ViewImagesDialogComponent,
+    PackageDeleteDialogComponent
   ],
   imports: [
     CommonModule,

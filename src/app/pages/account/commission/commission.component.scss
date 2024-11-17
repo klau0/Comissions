@@ -60,9 +60,6 @@
     padding: 5px 13px 5px 5px;
     background-color: #3cb057;
     color: black;
-    span::after{
-        content: " Ft";
-    }
 }
 
 @media only screen and (max-width: 1190px) {

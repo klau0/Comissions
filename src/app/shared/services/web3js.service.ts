@@ -8,10 +8,11 @@ export class Web3jsService {
   contract: any;
   defaultAccount = '';
 
+  // (npx hardhat clean)
+  // (delete deployments folder)
+  // (npx hardhat compile)
   // 1. npx hardhat node
   // 2. npx hardhat ignition deploy ./ignition/modules/CommissionModule.js --network localhost
-
-  // asd@asd és asd
 
   constructor() {
     const web3 = new Web3("http://127.0.0.1:8545/");
@@ -50,8 +51,6 @@ export class Web3jsService {
    */
   async login(email: string, password: string) {
     const result = await this.contract.methods.login(email, password).call();
-    // BigIntet ad vissza (-1n)
-    // int meg uint helyett lehet meg kéne adni valami kisebbet
     return result;
   }
 
@@ -65,6 +64,7 @@ export class Web3jsService {
 
   async getArtistsLenght(): Promise<number> {
     const result = await this.contract.methods.getArtistsLenght().call();
+    // The contract methods return numbers as BigInt
     return Number(result);
   }
 
@@ -99,8 +99,13 @@ export class Web3jsService {
     return result;
   }
 
+  async isPackageMarkedAsDeleted(artistId: number, packageId: number): Promise<boolean> {
+    const result = await this.contract.methods.isPackageMarkedAsDeleted(artistId, packageId).call();
+    return result;
+  }
+
   /**
-   * @returns 0: title, 1: price, 2: description
+   * @returns 0: title, 1: price, 2: description, 3: isMarkedDeleted
    */
   async getPackageInfo(artistId: number, packageId: number) {
     const result = await this.contract.methods.getPackageInfo(artistId, packageId).call();
@@ -111,8 +116,7 @@ export class Web3jsService {
    * @returns how many requests are currently on the package
    */
   async getPackageRequestedNumber(artistId: number, packageId: number): Promise<number> {
-    const result = await this.contract.methods.getPackageRequestedNumber(artistId, packageId).send({ from: this.defaultAccount });
-    // TODO: átírni blokkláncot használat előtt !!
+    const result = await this.contract.methods.getPackageRequestedNumber(artistId, packageId).call();
     return Number(result);
   }
 
@@ -121,7 +125,6 @@ export class Web3jsService {
    */
   async getRequestedPackageInfo(artistId: number, packageId: number, amountOfRequests: number) {
     const result = await this.contract.methods.getRequestedPackageInfo(artistId, packageId, amountOfRequests).call();
-    console.log(result);
     return result;
   }
 
@@ -154,13 +157,24 @@ export class Web3jsService {
     await this.contract.methods.deletePortfolioImage(artistId, portfolioImageId).send({ from: this.defaultAccount });
   }
 
+  async resetPortfolio(artistId: number) {
+    await this.contract.methods.resetPortfolio(artistId).send({ from: this.defaultAccount });
+  }
+
   async addToPortfolio(artistId: number, image: string) {
     await this.contract.methods.addToPortfolio(artistId, image).send({ from: this.defaultAccount });
   }
 
-  // call getPackageRequestedNumber before this!
   async deletePackage(artistId: number, packageId: number) {
     await this.contract.methods.deletePackage(artistId, packageId).send({ from: this.defaultAccount });
+  }
+
+  async markPackageAsDeleted(artistId: number, packageId: number) {
+    await this.contract.methods.markPackageAsDeleted(artistId, packageId).send({ from: this.defaultAccount });
+  }
+
+  async resetPackageNumber(artistId: number) {
+    await this.contract.methods.resetPackageNumber(artistId).send({ from: this.defaultAccount });
   }
 
   async updatePackage(artistId: number, packageId: number, newTitle: string, newPrice: number, newDescription: string) {
@@ -173,6 +187,10 @@ export class Web3jsService {
 
   async completeRequest(artistId: number, packageId: number, requestId: number, images: string[]) {
     await this.contract.methods.completeRequest(artistId, packageId, requestId, images).send({ from: this.defaultAccount });
+  }
+
+  async resetPackageRequestNumber(artistId: number, packageId: number) {
+    await this.contract.methods.resetPackageRequestNumber(artistId, packageId).send({ from: this.defaultAccount });
   }
 
   async changeProfilePicture(id: number, newImg: string, isArtist: boolean) {

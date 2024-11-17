@@ -1,6 +1,6 @@
 <h5 mat-dialog-title>Megbízás teljesítése</h5>
 <mat-dialog-content class="content-container">
-    <div class="flex-container">
+    <div class="flex-container" *ngIf="!loading">
         <div class="file-input">
             <input multiple type="file" accept="image/*" class="hide" (change)="onFilesSelected($event)" #filesUpload>
             <button mat-mini-fab [ngClass]="requestedImages.length === 0 ? '' : 'attached-file-btn'" (click)="filesUpload.click()" class="add-img-btn" type="button">
@@ -14,7 +14,7 @@
     </div>
     <mat-spinner *ngIf="loading" class="spinner"></mat-spinner>
 </mat-dialog-content>
-<mat-dialog-actions align="center">
+<mat-dialog-actions align="center" [ngClass]="loading ? 'no-actions' : ''">
     <button mat-fab extended class="send-btn" (click)="sendImagesToRequester()" type="button">
         <mat-icon>send</mat-icon>
         Küldés

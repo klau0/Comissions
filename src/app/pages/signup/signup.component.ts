@@ -85,9 +85,6 @@ export class SignupComponent {
       const serializedPortfolioFiles = await this.web3storageService.uploadFiles(this.portfolio_files);
       if (this.profile.name) {
         serializedProfile = await this.web3storageService.uploadFile(this.profile);
-      } else {
-        // TODO: átírni backenden !
-        // this.web3storageService.serializeCID(defaultCid);
       }
 
       // about only exists in the signUpArtistForm -> an artist wants to sign up

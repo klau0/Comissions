@@ -1,0 +1,13 @@
+<h5 mat-dialog-title>Figyelem</h5>
+<mat-dialog-content id="text">
+    A törlés nem lehetséges, mert a csomagon vannak megbízások.
+    <br>Kívánja <span id="not-available">nem elérhetőnek</span> jelölni?
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-raised-button class="agree-btn cancel-btn" mat-dialog-close type="button">
+        Mégsem
+    </button>
+    <button mat-raised-button class="agree-btn" [mat-dialog-close]="true" type="button">
+        Igen
+    </button>
+</mat-dialog-actions>
