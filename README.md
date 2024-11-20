@@ -1,4 +1,4 @@
-# ComissionsProject
+# CommissionsProject
 
 This project is a dApp for digital art commissions. It was made with Angular 18 and Hardhat 2.
 
