@@ -8,24 +8,8 @@ export class Web3jsService {
   contract: any;
   defaultAccount = '';
 
-  // (npx hardhat clean)
-  // (delete deployments folder)
-  // (npx hardhat compile)
-  // 1. npx hardhat node
-  // 2. npx hardhat ignition deploy ./ignition/modules/CommissionModule.js --network localhost
-
   constructor() {
     const web3 = new Web3("http://127.0.0.1:8545/");
-
-    /*web3.eth
-    .getChainId()
-    .then((result) => {
-      console.log("Chain ID: " + result);
-    })
-    .catch((error) => {
-      console.error(error);
-    });*/
-
     const json = require('../../../../hardhat/artifacts/contracts/Commission.sol/Commission.json');
     this.contract = new web3.eth.Contract(json.abi, "0x5FbDB2315678afecb367f032d93F642f64180aa3");
     web3.eth.getAccounts().then((result) => {

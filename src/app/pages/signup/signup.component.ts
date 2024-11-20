@@ -68,9 +68,6 @@ export class SignupComponent {
   }
 
   async onSubmit($event: Event) {
-    //  <img src="https://CID.ipfs.w3s.link/FÁJLNÉV.KIT"> ha dir
-    //  ez is jó: `${fileCid}`, vagy ez: '' + fileCid;
-    //  console.log(`https://${fileCid}.ipfs.w3s.link/?filename=${valami}`);
     const name = this.activeForm.controls.name;
     const pswd = this.activeForm.controls.pswd;
     const rePswd = this.activeForm.controls.rePswd;

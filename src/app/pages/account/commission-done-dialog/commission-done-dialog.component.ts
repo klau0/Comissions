@@ -30,8 +30,6 @@ export class CommissionDoneDialogComponent {
   }
 
   sendImagesToRequester() {
-    console.log(this.data.requestId, ": requestId");
-    console.log(this.data.packageId, ": packageId");
     if (this.requestedImages.length) {
       this.loading = true;
       const artistId = Number(sessionStorage.getItem("uid"));

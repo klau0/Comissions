@@ -27,9 +27,8 @@ export class CommissionComponent implements OnInit {
   markAsDone(event: number) {
     for (let i = 0; i < this.requestsNumber; i++) {
       if (this.requestsData[i]['requestId'] === event) {
-        console.log(this.requestsData.splice(i, 1));
+        this.requestsData.splice(i, 1);
         if (this.requestsData.length === 0) {
-          console.log(this.titleAndPrice, ": no longer has requests on it");
           this.allRequestsDone.emit(this.titleAndPrice);
         } else {
           this.requestsNumber--;

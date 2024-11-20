@@ -226,6 +226,6 @@ export class AccountComponent implements OnInit {
   }
 
   deleteCommission(event: string) {
-    console.log(this.requestedPackagesInfo.delete(event) ? "succesfully deleted commission" : 'ERROR: no such key in requestedPackagesInfo');
+    this.requestedPackagesInfo.delete(event);
   }
 }

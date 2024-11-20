@@ -31,9 +31,6 @@ export class LoginComponent {
           const id = (Number(result[0])).toString();
           sessionStorage.setItem("uid", id);
           sessionStorage.setItem("isArtist", result[1] ? "1" : "0");
-
-          console.log('id: ' + id, 'isArtist: ' + result[1].toString());
-
           this.router.navigateByUrl('/main').then(() => {
             this.loading = false;
           });
